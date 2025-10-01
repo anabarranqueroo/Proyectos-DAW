@@ -1,0 +1,12 @@
+body{
+    background-color: yellow;
+}
+h3{
+    color: red;
+    text-align: center;
+}
+p{
+    color:black;
+    font-weight: bold;
+    text-align: left;
+}

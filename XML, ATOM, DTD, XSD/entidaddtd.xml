@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fichas [
+    <!ENTITY poblacion "Tejeda de Tiétar">
+    <!ENTITY provincia SYSTEM "provincia.txt">
+        <!ENTITY detalle SYSTEM "ficha.xml">
+]>
+<grupo>
+    &detalle;
+    <fichas>
+        <ficha>
+            <empresa nombre="Tractores Toledo"></empresa>
+            <poblacion>&poblacion;</poblacion>
+            <provincia>&provincia;</provincia>
+        </ficha>
+        <ficha>
+            <empresa nombre="Congelados Kurylenko"></empresa>
+            <poblacion>&poblacion;</poblacion>
+            <provincia>&provincia;</provincia>
+        </ficha>
+    </fichas>
+</grupo>

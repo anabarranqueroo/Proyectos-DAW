@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registro_usuarios
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamepaceSchemaLocation="ejercicio2.xsd">
+    <usuario>
+        <nombre>Laura</nombre>
+        <apellido>Rodriguez</apellido>
+        <edad>23</edad>
+        <correo>laurarrdgz45@gmail.com</correo>
+        <telefono>678 98 54 32</telefono>
+    </usuario>
+    <usuario>
+        <nombre>Jesus</nombre>
+        <apellido>Peña</apellido>
+        <edad>45</edad>
+        <correo>jeesu875@gmail.com</correo>
+        <telefono>666 46 234 45</telefono>
+    </usuario>
+    <usuario>
+        <nombre>Pepa</nombre>
+        <apellido>Alvarez</apellido>
+        <edad>25</edad>
+        <correo>pepa67alv3@gmail.com</correo>
+        <telefono>658 90 54 90</telefono>
+    </usuario>
+</registro_usuarios>

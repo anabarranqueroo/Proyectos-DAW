@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cv [
+    <!ELEMENT cv (nombre, direccion, telefono, fax?, email+, idiomas)> 
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT direccion (#PCDATA)> 
+    <!ELEMENT telefono (#PCDATA)> 
+    <!ELEMENT fax (#PCDATA)> 
+    <!ELEMENT email (#PCDATA)> 
+    <!ELEMENT idiomas (idioma*)>
+    <!ELEMENT idioma (#PCDATA)>
+    ]>
+<CV>
+    <nombre>Desmond Miles</nombre>
+    <direccion>Black Hills, Dakota del Sur, Estados Unidos</direccion> 
+    <telefono>+1-555-73-66-58</telefono>
+    <email>desmond.miles@servidordeprueba.org</email>
+    <email>desmond.miles@otroservidor.fr</email>
+    <idiomas>
+        <idioma>Francés </idioma>
+        <idioma>Inglés</idioma>
+        <idioma>Italiano</idioma>
+    </idiomas>
+</CV>

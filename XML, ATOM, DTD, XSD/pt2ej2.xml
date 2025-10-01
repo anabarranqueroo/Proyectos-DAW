@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+    <videoteca
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamepaceSchemaLocation="pt2ej2.xsd">
+        <pelicula>
+            <título>El escenario loco</título>
+            <director>Juan Alvarez</director>
+            <año_estreno>2003</año_estreno>
+            <genero>Ficcion</genero>
+            <clasificación>+7</clasificación>
+            <actores>
+                <actor>Belen Cuesta</actor>
+                <actor>Fernando Torres</actor>
+            </actores>
+        </pelicula>
+        <pelicula>
+            <título>Maria Luisa se fue</título>
+            <director>Luna Garcia</director>
+            <año_estreno>2016</año_estreno>
+            <genero>Romance</genero>
+            <clasificación>+18</clasificación>
+            <actores>
+                <actor>Africa Gomez</actor>
+                <actor>Laura Martin</actor>
+            </actores>
+        </pelicula>
+        <pelicula>
+            <título>Dora</título>
+            <director>Pepe Alvarez</director>
+            <año_estreno>2006</año_estreno>
+            <genero>Animado</genero>
+            <clasificación>TP</clasificación>
+            <actores>
+                <actor>Ana Garcia</actor>
+                <actor>Juan Torres</actor>
+            </actores>
+        </pelicula>
+    </videoteca>

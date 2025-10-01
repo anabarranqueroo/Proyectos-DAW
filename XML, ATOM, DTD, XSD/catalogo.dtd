@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE catalogo [
+<!ENTITY plataformas SYSTEM "plataformas.txt">
+
+<!ELEMENT catalogo (videojuegos, desarrolladores, plataformas)>
+
+<!ELEMENT videojuegos (videojuego+)>
+<!ELEMENT videojuego (titulo, genero, lanzamiento, descripcion?, desarrollador, plataforma+)>
+<!ELEMENT titulo (#PCDATA)>
+<!ELEMENT genero (#PCDATA)>
+<!ELEMENT lanzamiento (#PCDATA)>
+<!ELEMENT descripcion (#PCDATA)>
+<!ELEMENT desarrollador (#PCDATA)>
+<!ELEMENT plataformas (#PCDATA)>
+
+<!ELEMENT desarrolladores (desarrollador+)>
+<!ELEMENT desarrollador (nombre, direccion?)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT direccion (#PCDATA)>
+
+<!ELEMENT plataformas (#PCDATA)>
+<!ELEMENT plataforma (#PCDATA)>
+]>

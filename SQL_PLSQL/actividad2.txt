@@ -1,0 +1,70 @@
+/*Actividad 1*/
+SELECT 'DEPARTAMENTO DE '||nomde AS "NOMBRE"
+FROM departamentos
+WHERE presu<30 
+ORDER BY nomde ASC;
+
+/*Actividad 2*/
+SELECT numde ||'-'||nomde "Número-Nombre",tidir as "Tipo de director"
+FROM departamentos
+WHERE presu<30;
+
+/*Actividad 3*/
+SELECT nomem as "Nombre", 
+salar*12 as "Salario 2014", 
+(salar*12)*1.02 as "Salario 2015",
+(salar *12)*1.02*1.02 as "Salario 2016"
+FROM empleados
+WHERE numhi>4
+ORDER BY nomem;
+
+/*Actividad 4*/
+SELECT nomem
+FROM empleados
+WHERE 120*numhi>0.20*salar
+ORDER BY nomem;
+
+/*Actividad 5*/
+SELECT nomem as "Nombre", salar+comis as "Salario total"
+FROM empleados
+WHERE numde=112 
+ORDER BY salar+comis desc, nomem;
+
+/*Actividad 6*/
+SELECT nomem as "Nombre", salar+comis as "Salario total"
+FROM empleados
+WHERE numde=112 and comis IS NOT NULL
+ORDER BY salar+comis desc, nomem;
+
+/*Actividad 7*/
+SELECT nomem as "Nombre", salar+comis||' €' as "Salario total"
+FROM empleados
+WHERE numde=112 and comis IS NOT NULL
+ORDER BY salar+comis desc, nomem;
+
+/*Actividad 8*/
+SELECT nomem AS "Nombre", salar+(60*(numhi-3))||' €' AS "Salario total"
+FROM empleados
+WHERE numhi>3 
+ORDER BY nomem;
+
+/*Actividad 9*/
+SELECT nomem AS "Nombre", salar+(60*(numhi-3))||' €' AS "Salario total"
+FROM empleados
+WHERE numhi>=(SELECT numhi
+        FROM empleados
+        WHERE nomem='JULIANA')
+ORDER BY nomem;
+
+/*Actividad 10*/
+SELECT nomem
+FROM empleados
+WHERE salar>=(SELECT salar*1.15
+        FROM empleados
+        WHERE nomem='CLAUDIA')
+ORDER BY nomem;
+
+/*Actividad 11*/
+SELECT nomde
+FROM departamentos
+WHERE depde IS NULL;

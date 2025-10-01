@@ -1,0 +1,10 @@
+body{
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #4285f4;
+    margin-top: 50%;
+    font-weight: 700;
+}

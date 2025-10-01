@@ -1,0 +1,66 @@
+/*ACTIVIDAD 7. CONSULTAS COLECTIVAS*/
+/*Actividad 1*/
+SELECT min(salar), max(salar), avg(salar)
+FROM empleados;
+/*Actividad 2*/
+SELECT nomem,salar
+FROM empleados
+WHERE salar*1.4>(SELECT max(salar) FROM empleados)
+ORDER BY 1;
+/*Actividad 3*/
+SELECT max(EXTRACT(year from sysdate)-(EXTRACT(year from fecna)))
+FROM empleados
+WHERE numde='110';
+/*Actividad 4*/
+SELECT nomem, TRUNC((SYSDATE-FECNA)/365)
+FROM empleados
+WHERE numde=110 and TRUNC((SYSDATE-FECNA)/365)=(SELECT TRUNC(max((SYSDATE-FECNA)/365))
+                                                FROM empleados WHERE numde=110);
+/*Actividad 5*/
+SELECT count(nomem), sum(comis), count(comis)
+FROM empleados
+WHERE numde='112'
+GROUP BY numde;
+/*Actividad 6*/
+SELECT numde, count(nomem)
+FROM empleados 
+GROUP BY numde;
+/*Actividad 7*/
+SELECT numde,  min(salar) as "salario minimo", avg(salar)as "salario medio", max(salar) as "salario maximo"
+FROM empleados
+GROUP BY numde;
+/*Actividad 8*/
+SELECT comis as "Comision", avg(salar) as "Salario medio",TRUNC(avg(EXTRACT(year from sysdate)-(EXTRACT(year from fecna))))as "Edad media" 
+FROM empleados
+GROUP BY comis; 
+/*Actividad 9
+SELECT comis as "Comision", avg(salar) as "Salario medio",TRUNC(avg(EXTRACT(year from sysdate)-(EXTRACT(year from fecna))))as "Edad media" 
+FROM empleados
+GROUP BY comis;*/
+/*Actividad 10*/
+SELECT comis,numde,avg(salar), TRUNC(avg(EXTRACT(year from sysdate)-(EXTRACT(year from fecna))))as "Edad media" 
+FROM empleados
+GROUP BY numde ,comis;
+/*Actividad 11*/
+SELECT numde, count(nomem), sum(salar)
+FROM empleados
+WHERE salar>2500
+GROUP BY numde;
+/*Actividad 12*/
+SELECT count(*), extel
+FROM empleados
+GROUP BY extel
+HAVING count(nomem)>1;
+/*Actividad 13*/
+SELECT numce as "Nº centro", avg(presu) as "Presu medio"
+FROM departamentos
+GROUP BY numce;
+/*Actividad 14*/
+SELECT numce,  tidir, avg(presu)
+FROM departamentos
+GROUP BY numce, tidir;
+/*Actividad 15*/
+/*Actividad 16*/
+SELECT numde, max(sum(salar))
+FROM empleados
+GROUP BY numde;

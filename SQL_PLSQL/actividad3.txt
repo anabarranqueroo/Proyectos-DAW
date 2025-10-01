@@ -1,0 +1,80 @@
+/*ACTIVIDAD 3*/
+/*ejercicio 1*/
+SELECT nomem
+FROM empleados
+WHERE salar>(SELECT max(salar)
+            FROM empleados
+            WHERE numde=122);
+/*ejercicio 2*/
+SELECT nomem
+FROM empleados
+WHERE salar>all(SELECT(salar)
+            FROM empleados
+            WHERE numde=150)
+            ORDER BY nomem;
+/*ejercicio 3*/
+SELECT nomem
+FROM empleados 
+WHERE salar>(SELECT min(salar * 2.5)
+            FROM empleados
+            WHERE numde=122)
+ORDER BY nomem;
+/*ejercicio 4*/
+SELECT nomem, salar
+FROM empleados
+WHERE salar=any(SELECT (comis*10)
+                FROM empleados);
+/*ejercicio 5*/
+SELECT nomem, salar
+FROM empleados
+WHERE salar>(SELECT max(comis*20)
+            FROM empleados)
+            ORDER BY nomem;
+/*ejercicio 6*/
+SELECT nomem, salar
+FROM empleados
+WHERE salar<(SELECT min(comis*20)
+            FROM empleados)
+            ORDER BY nomem;
+/*ejercicio 7*/
+SELECT nomem
+FROM empleados
+WHERE salar BETWEEN 1500 and 1600
+ORDER BY nomem;
+/*ejercicio 8*/
+SELECT nomem, salar
+FROM empleados
+WHERE ((salar/numhi<720 and numhi>0)or((salar/numhi>(comis*50))
+        AND numhi>0) and comis is not null) 
+        Order by nomem;
+/*ejercicio 9*/
+SELECT nomem AS Nombre, salar || ' €' AS Salario
+FROM empleados
+WHERE nomem LIKE 'A%'
+ORDER BY nomem;
+/*ejercicio 10*/
+SELECT nomem
+FROM empleados
+WHERE nomem LIKE '________'
+ORDER BY nomem;
+/*ejercicio 11*/
+SELECT 'DEPARTAMENTO DE '|| nomde AS Departamento, presu || '.000 €' AS Presupuesto
+FROM departamentos
+WHERE nomde LIKE 'SECTOR%';
+/*ejercicio 12*/
+SELECT nomem
+FROM empleados
+WHERE extel=250 or extel=750
+ORDER BY nomem;
+/*ejercicio 13*/
+SELECT nomem
+FROM empleados
+WHERE numde=some(SELECT numde
+            FROM empleados
+            WHERE nomem='PILAR' or nomem='DOROTEA')
+            ORDER BY nomem;
+/*ejercicio 14*/
+SELECT nomde
+FROM departamentos
+WHERE direc='DIRECC.COMERCIAL' or direc='PERSONAL'
+ORDER BY nomde;

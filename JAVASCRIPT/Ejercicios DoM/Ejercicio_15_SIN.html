@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;" />
+        <title>Ejercicio 15 - Informaci�n sobre eventos</title>
+
+        <style type="text/css">
+            body {font-family: arial, helvetica;}
+            #info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+            #info h1 {margin: 0;}
+        </style>
+
+        <script type="text/javascript">
+
+            function muestraInformacion(elEvento){
+                var evento = elEvento || window.event;
+                var info = document.getElementById("info");
+                var coordenadaX = evento.clientX;
+                var coordenadaY = evento.clientY;
+                var X, Y;
+                var ie = navigator.userAgent.toLowerCase().indexOf('msie')!=-1;
+
+                if(ie){
+                        X = evento.clientX + document.body.scrollLeft;
+                        Y = evento.clientY + document.body.scrollTop;
+                    }else{
+                        X = evento.pageX;
+                        Y = evento.pageY;
+                    }
+
+            if(evento.type === 'mousemove'){            
+                info.innerHTML = "<h1>Ratón</h1>" + "<p>Navegador ["+coordenadaX + ", "+coordenadaY + "]</p><p>Página [" +X + "," +Y +"] </p>";
+                info.style.backgroundColor= "";
+            
+            }else if(evento.type === 'keypress'){
+                    var caracter = evento.charCode || evento.keyCode;
+                    info.innerHTML = "<h1>Teclado</h1>" + "<p>Caracter ["+String.fromCharCode(caracter) + "]</p><p>Código [" +caracter+"] </p>";
+                    info.style.backgroundColor = "#CCE6FF";
+
+            }else if(evento.type === 'mousedown'){
+                info.innerHTML = "<h1>Ratón</h1>" + "<p>Navegador ["+coordenadaX + ", "+coordenadaY + "]</p><p>Página [" +X + "," +Y +"] </p>";
+                info.style.backgroundColor = "#FFFFCC";
+            }
+             
+        }
+   
+        document.onmousemove = muestraInformacion;
+        document.onkeypress = muestraInformacion;
+        document.onmousedown = muestraInformacion;
+
+   
+
+          
+					
+        </script>
+    </head>
+
+    <body>
+
+        <div id="info"></div>
+
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+    </body>
+</html>

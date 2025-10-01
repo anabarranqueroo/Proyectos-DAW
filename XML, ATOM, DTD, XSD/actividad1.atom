@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Futbol</title>
+    <link href="https:/www.marca.com/">
+    <updated>2025-01-29</updated>
+    <author>
+        <name>Ana Esteban</name>
+    </author> 
+    <id>https:/www.marca.com/feed/</id>
+    <entry>   
+        <title>Real Madrid</title>
+
+    <link href="https://www.marca.com/futbol/real-madrid/2025/01/29/locuras-imparable-mbappe-medirse-brest-golazo-recital-fuera-area.html"/>
+    <id>https://www.marca.com/futbol/real-madrid/2025/01/29/locuras-imparable-mbappe-medirse-brest-golazo-recital-fuera-area.html</id>
+    <updated>2025-01-29</updated>
+    <summary>Mbappé va lanzado a mejorar la primera temporada de Cristiano Ronaldo</summary>
+    </entry>
+    <entry>
+        <title>Fichajes</title>
+        <link href="https://www.marca.com/motor/2025/01/29/duro-testimonio-sobre-muerte-raul-torras-isla-man-estrello-arbol-partio-mitad.html"/>
+        <id>https://www.marca.com/motor/2025/01/29/duro-testimonio-sobre-muerte-raul-torras-isla-man-estrello-arbol-partio-mitad.html</id>
+        <updated>2025-01-29</updated>
+        <summary>Mercado de fichajes hoy en directo | Altas, bajas y última hora de Real Madrid, Barcelona...</summary>
+    </entry>
+    <title>Atlético</title>
+
+    <link href="https://www.marca.com/futbol/champions-league/2025/01/29/secretos-milagro-brest.html"/>
+    <id>https://www.marca.com/futbol/champions-league/2025/01/29/secretos-milagro-brest.html</id>
+    <updated>2025-01-29</updated>
+    <summary>El Atlético se lanza a por un 5</summary>
+    </entry>
+    </feed>

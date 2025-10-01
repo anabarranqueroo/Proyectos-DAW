@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE empleados [
+    <!ELEMENT empleados (empleado+)>
+    <!ELEMENT empleados (nombre, numero, departamento, salario)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT numero (#PCDATA)>
+    <!ELEMENT departamento (#PCDATA)>
+    <!ELEMENT salario (#PCDATA)>
+]>
+<empleados>
+    <empleado>
+        <nombre>Carmen</nombre>
+        <numero>1</numero>
+        <departamento>Administrativa</departamento>
+        <salario>1800</salario>
+    </empleado>
+    <empleado>
+        <nombre>Juan</nombre>
+        <numero>2</numero>
+        <departamento>Director</departamento>
+        <salario>2100</salario>
+    </empleado>
+</empleados>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viaje>
+    <clientes>
+        <nombre>Ana Esteban</nombre>
+        <inicio>14-02-2025</inicio>
+        <fin>23-02-2025</fin>
+        <origen>Sevilla</origen>
+        <destino>
+            <ciudad>Madrid</ciudad>
+            <hotel>Hotel Madrid</hotel>
+            <noches>4</noches>
+            <precio>279</precio>
+        </destino>
+        <destino>
+            <ciudad>Ciudad de Guatemala</ciudad>
+            <hotel>Hotel Guatemala</hotel>
+            <noches>5</noches>
+            <precio>256</precio>
+        </destino>
+    </clientes>
+</viaje>

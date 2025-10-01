@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<factura
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    xs:noNamespaceSchemaLocation="factura.xsd">
+    <numero>1</numero>
+    <cliente>
+        <nombre>Ediciones Paraninfo S.A.</nombre> 
+        <CIF>A81461477</CIF>
+    </cliente>
+    <concepto>
+        <descripcion>Imprenta</descripcion>
+        <importe>1000</importe>
+    </concepto>
+    <concepto>
+        <descripcion>Maquetación </descripcion>
+        <importe>Se0.50</importe>
+    </concepto>
+    <impuesto nombre="IVA">PENDIENTE</impuesto> 
+    <totalFactura euros="1500.50"/>
+</factura>

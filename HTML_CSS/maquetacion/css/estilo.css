@@ -1,0 +1,168 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(103, 98, 235);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:center;
+}
+/*Inicio de header*/
+.header{
+    width: 80%; /*largo titulo*/
+    height: 4em; /*ancho titulo*/
+    background-color: rgb(179, 209, 255);
+    display: flex; /**centra el encabezado al completo*/
+    flex-direction: row;
+    justify-content: center;/*centra el texto del titulo*/
+    align-items: center;
+}
+.logo{
+    object-fit: cover;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+/*Inicio de nav*/
+.nav{
+    width: 80%;
+    height: 3em;
+    background-color: rgb(184, 243, 247);
+}
+.barnav{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.menu{
+    width: 20%;
+    height: 100%;
+    background-color: rgb(86, 146, 244);
+    color:aliceblue;
+    text-decoration: none;  
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+.menu:hover{
+    background-color: antiquewhite;
+    color:rgb(0, 0, 0);
+    transition: 0.5s;
+}
+/*Inicio de banner*/
+.banner{
+    width: 80%;
+    height: calc(100vh-7em);
+    background-color: rgb(230, 230, 233);
+    /*background-image: url(../img/banner,png);*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title-banner{
+    font-size: 3em;
+}
+.btn-banner{ /*boton debajo del titulo*/
+    background-color: rgb(189, 172, 216);
+    text-decoration: none; /*enlace sin decoracion*/
+    padding: 1em 4em; /*medidas boton*/
+    color:rgb(130, 47, 197);
+    font-size: 1.25em; /*tamaño letra*/
+    margin: 1em; /*separacion del boton con la seccion*/
+    border-radius: 0.5em; /*esquinas redonda boton*/
+}
+.btn-banner:hover{ /*transicion de color del boton*/
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
+    transition: 0.5s;
+    
+}
+/*Inicio ed articulo*/
+.article{
+    width: 80%;
+    height: 100vh;
+    background-color: rgb(110, 182, 246);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+}
+.title-article{
+    font-size: 2em;
+}
+.paragraph-article{
+    font-size: 1.25em;
+    width: 80%;
+    text-align: justify;
+}
+.galery{
+    width: 80%;
+    height: 40%;
+    background-color: rgb(223, 210, 235);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.box{
+    width: 24%;
+    background-color: rgb(216, 174, 255);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.box-img{
+    width: 100%;
+    height: 60%;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.box-img img{
+    object-fit: cover;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.btn-img{
+    background-color: rgb(61, 28, 114);
+    text-decoration: none;
+    padding: 0.5em 3em;
+    color:rgb(189, 161, 211);
+    font-size: 1em;
+    margin: 1em 0;
+    border-radius: 0.5em;
+}
+/*Inicio de footer*/
+.footer{
+    width: 80%;
+    height: 4em;
+    background-color: rgb(33, 8, 173);
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.text-footer{
+    font-size: 1em;
+
+}

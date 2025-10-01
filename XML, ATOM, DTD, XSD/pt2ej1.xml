@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE universidad [
+    <!ELEMENT universidad (estudiante+)>
+    <!ELEMENT estudiante (nombre, genero, edad, cursos+, identificacion?)>
+    <!ELEMENT nombre(#PCDATA)>
+    <!ELEMENT genero(#PCDATA)>
+    <!ELEMENT edad(#PCDATA)>
+    <!ELEMENT identificacion(#PCDATA)>
+    <!ELEMENT cursos(curso)>
+    <!ELEMENT curso(nombre)>
+    <!ELEMENT nombre (#PCDATA)>
+
+    <!ATTLIST estudiante genero (Femenino|Masculino)>
+    <!ATTLIST cursos codigo CDATA #REQUIRED>
+]>
+<universidad> 
+    <estudiante genero="Femenino"> 
+    <nombre>Maria Fernanda González</nombre> 
+    <genero>Femenino</genero> 
+    <edad>20</edad> 
+        <cursos> 
+            <curso codigo="C001"> 
+                <nombre>Matemáticas</nombre> 
+            </curso> 
+            <curso codigo="C002"> 
+                <nombre>Ciencias</nombre> 
+            </curso> 
+        </cursos> 
+        <identificacion>001</identificacion> 
+    </estudiante> 
+    <estudiante genero="Masculino"> 
+    <nombre>Juan Pérez</nombre> 
+    <genero>Masculino</genero> 
+    <edad>22</edad> 
+        <cursos> 
+            <curso codigo="C003"> 
+            <nombre>Lenguaje</nombre> 
+        </curso> 
+        <curso codigo="C004">
+            <nombre>Historia</nombre> 
+        </curso> 
+        <curso codigo="C005"> 
+            <nombre>Arte</nombre> 
+        </curso> 
+        </cursos> 
+    </estudiante> 
+</universidad>

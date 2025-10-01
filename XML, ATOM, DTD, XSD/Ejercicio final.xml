@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<equipos>
+<equipo>
+    <nombre>Barcelona</nombre>
+    <ciudad>Barcelona</ciudad>
+    <entrenador/>
+    <jugadores>
+        <jugador posicion="Defensa">
+            <nombre>Jules Kounde</nombre>
+            <nacionalidad>Frances</nacionalidad>
+        </jugador>
+        <jugador posicion="Delantero">
+            <nombre>LAmine Yamal</nombre>
+            <nacionalidad>Española</nacionalidad>
+        </jugador>
+    </jugadores>
+</equipo>
+<equipo>
+    <nombre>Osasuna</nombre>
+    <ciudad>Pamplona</ciudad>
+    <entrenador/>
+    <jugadores>
+        <jugador posicion="Delantero">
+            <nombre>Bryan Zaragoza</nombre>
+            <nacionalidad>Española</nacionalidad>
+        </jugador>
+        <jugador posicion="Centrocampista">
+            <nombre>Lucas Torró</nombre>
+            <nacionalidad>Española</nacionalidad>
+        </jugador>
+    </jugadores>
+</equipo>
+</equipos>

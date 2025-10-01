@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE receta [
+<!ELEMENT receta (nombre, ingredientes, elaboracion)> <!ELEMENT nombre (#PCDATA)>
+<!ELEMENT ingredientes (ingrediente+)>
+<!ELEMENT elaboracion (#PCDATA)>
+<!ELEMENT ingrediente (#PCDATA)>
+
+<!ATTLIST receta raciones CDATA #REQUIRED>
+<!ATTLIST receta dificultad (bajal media | alta) "tmedia"> 
+<!ATTLIST ingrediente cantidad CDATA #IMPLIED>
+<!ATTLIST ingrediente unidad CDATA #IMPLIED>
+]>
+<receta raciones="6" dificultad="media"> 
+    <nombre>Tortilla de patatas </nombre> 
+        <ingredientes>
+            <ingrediente cantidad="1" unidad="kilogramo">Patata</ingrediente> 
+            <ingrediente cantidad="8" unidad=" unidades">Huevo</ingrediente> 
+            <ingrediente cantidad="1" unidad="unidades ">Cebolla</ingrediente> 
+            <ingrediente>Aceite de Oliva</ingrediente>
+            <ingrediente>Sal</ingrediente>
+        </ingredientes>
+        <elaboracion>
+            Se pelan las patatas...
+        </elaboracion>
+</receta>

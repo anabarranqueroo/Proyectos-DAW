@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Examen RSS</title>
+        <link>https://elpais.com/</link>
+        <description>Las noticias del pais</description>
+        <item>
+            <title>Trump</title>
+            <link>https://elpais.com/internacional/2025-02-04/trump-preve-que-gaza-permanecera-inhabitable-entre-10-y-15-anos.html</link>
+            <description>El presidente señala que su país “poseerá” la Franja y la demolerá para reconstruirla de forma que sea la “Riviera de Oriente Próximo”, en la que vivirá “gente del mundo”, tras desplazar a sus habitantes.</description>
+            <author>Ana Esteban</author>
+        </item>
+        <item>
+            <title>Fiscal general</title>
+            <link>https://elpais.com/espana/2025-02-05/garcia-ortiz-ante-el-juez-los-dispositivos-y-el-propio-despacho-del-fiscal-general-albergan-una-cantidad-de-datos-absolutamente-inimaginables.html</link>
+            <description>García Ortiz reprochó al juez Hurtado, que investiga en el Supremo la supuesta revelación del correo de la pareja de Ayuso, que ordenara copiar información de su teléfono</description>
+            <author>Ana Esteban</author>
+        </item>
+        <item>
+            <title>Garcia Ortiz</title>
+            <link>https://elpais.com/espana/2025-02-05/la-mano-derecha-de-garcia-ortiz-niega-en-el-supremo-haber-filtrado-la-denuncia-y-el-correo-de-la-pareja-de-ayuso.html</link>
+            <description>Diego Villafañe niega ante el juez que lo investiga por revelación de secretos</description>
+            <author>Ana Esteban</author>
+        </item>
+        <item>
+            <title>Gobierno</title>
+            <link>https://elpais.com/espana/2025-02-05/el-gobierno-se-aferra-al-respaldo-social-de-la-primera-reduccion-de-jornada-en-40-anos-para-presionar-a-pp-y-junts.html</link>
+            <description>La vicepresidenta Díaz recuerda que Feijóo se arrepintió del no en la reforma laboral mientras el Ejecutivo confía en ofrecer mayores compensaciones a las pymes como medida para atraer a Junts</description>
+            <author>Ana Esteban</author>
+        </item>
+    </channel>
+</rss>

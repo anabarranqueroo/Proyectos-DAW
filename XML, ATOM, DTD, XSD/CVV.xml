@@ -1,0 +1,32 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<CV>
+    <nombre>Shigeru Miyamoto</nombre>
+    <anyo-nacimiento>1952</anyo-nacimiento>
+    <residencia>
+        <ciudad>Kioto</ciudad> 
+        <pais>Japón</pais>
+    </residencia>
+    <contacto>
+        <telefono>+81-555-11-33-66</telefono>
+        <email>shigeru@servidordecorreo.jp</email>
+        <linkedin>http://www.linkedin.com/mi yamoto</linkedin>
+    </contacto>
+    <descripcion> Gran capacidad creativa. Interesado en el diseño de videojuegos</descripcion>
+    <competencias>
+        <competencia nombre="Diseño" nivel="Alto" />
+        <competencia nombre="Trabajo en equipo" nivel="Medio" />
+        <competencia nombre="Música" nivel="Alto" />
+    </competencias>
+    <formacion>
+        <titulacion nombre="Diseño industrial" centro="Colegio Municipal de Artes Industriales de Kanazawa" anyo="1975" />
+    </formacion>
+    <experiencia-profesional>
+        <experiencia>
+            <puesto>Diseñador de juegos</puesto> 
+            <empresa>Nintendo</empresa>
+            <inicio>1977</inicio>
+            <fin></fin>
+        </experiencia>
+    </experiencia-profesional>
+</CV>

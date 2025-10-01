@@ -1,0 +1,80 @@
+CREATE OR REPLACE TRIGGER SEGURIDADEMPLEADOS
+BEFORE INSERT ON EMPLEADOS
+BEGIN
+    IF((TO_CHAR(SYSDATE, 'D') =  1)) THEN
+        RAISE_APPLICATION_ERROR(-20100, 'HOY ES LUNES, NO PUEDES AÑADIR DATOS');
+    END IF;
+END;
+/
+
+CREATE OR REPLACE  TRIGGER AUMENTOUNHIJO
+BEFORE UPDATE ON EMPLEADOS
+    FOR EACH ROW
+BEGIN
+    IF(( :NEW.NUMHI) = (:OLD.NUMHI+1)) THEN
+        :NEW.SALAR:= :OLD.SALAR*1.10;
+    END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER ONUPDATECASCADECLIPEDIDO
+AFTER UPDATE OF ID ON CLIENTE
+    FOR EACH ROW
+BEGIN
+    UPDATE PEDIDO SET PEDIDO.ID_CLIENTE = :NEW.ID WHERE PEDIDO.ID_CLIENTE = :OLD.ID;
+END;
+/
+
+CREATE TABLE T_CONTROLCENTROS(
+    TABLA VARCHAR2(50),
+    USUARIO VARCHAR2(50),
+    EVENTO VARCHAR2(50),
+    FECHA VARCHAR2(30)
+);
+
+
+CREATE OR REPLACE TRIGGER controlcentros
+AFTER INSERT OR DELETE OR UPDATE ON centros
+BEGIN
+    IF inserting THEN
+        INSERT INTO t_controlcentros (tabla,usuario, evento, fecha)
+        VALUES ('Centros', USER, 'Insercción', to_char(sysdate, 'DD/MM/YYYY HH24:MI:SS')); END IF;
+    IF deleting THEN
+        INSERT INTO t_controlcentros (tabla, usuario, evento, fecha)
+        VALUES ('Centros', USER, 'Borrado', to_char(sysdate, 'DD/MM/YYYY HH24:MI:SS')); END IF;
+    IF updating THEN
+        INSERT INTO t_controlcentros (tabla, usuario, evento, fecha)
+        VALUES ('Centros', USER, 'Actualización', to_char(sysdate, 'DD/MM/YYYY HH24:MI:SS')); END IF;
+END;
+/
+
+/*disparador para controlar la edad de los empleados, no puede ser menor de 16  cada vez que inserte o actualice. 
+Usar la funcion de la edad de la bd t6.a5.e1*/
+CREATE OR REPLACE FUNCTION ANIOS (fecha1 DATE,fecha2 DATE) RETURN NUMBER
+IS
+ANIOS_DIF NUMBER(6);
+BEGIN
+    ANIOS_DIF := ABS(TRUNC(MONTHS_BETWEEN(fecha2,fecha1)/ 12));
+    RETURN ANIOS_DIF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER CONTROLEDAD
+BEFORE INSERT OR UPDATE OF FECNA ON EMPLEADOS 
+FOR  EACH ROW
+DECLARE
+    FECHAERROR EXCEPTION;
+BEGIN
+    IF (ANIOS(:NEW.FECNA)< 16 ) THEN
+        RAISE FECHAERROR;
+    END IF;
+    EXCEPTION
+        WHEN FECHAERROR THEN
+                     RAISE_APPLICATION_ERROR(-20100, 'EL EMPLEADO TIENE QUE TENER MINIMO 16 AÑOS');
+END;
+/
+
+UPDATE EMPLEADOS SET FECNA='30/04/2010' WHERE NUMEM=110;
+
+
+

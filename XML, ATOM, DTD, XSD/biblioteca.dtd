@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE biblioteca [
+<!ENTITY nombre "Biblioteca">
+<!ENTITY direccion "Calle Tejares, Nº3">
+<!ELEMENT biblioteca (libros, autores, editoriales)> 
+<!ELEMENT libros (libro+)>
+<!ELEMENT libro (titulo, isbn?, año, autor+)>
+<!ELEMENT titulo (#PCDATA)>
+<!ELEMENT isbn (#PCDATA)>
+<!ELEMENT año (#PCDATA)>
+
+<!ELEMENT autores (autor+)>
+<!ELEMENT autor (nombre, nacionalidad?)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT nacionalidad (#PCDATA)>
+
+<!ELEMENT editoriales (editorial+)>
+<!ELEMENT editorial (nombre, direccion?)>
+<!ELEMENT direccion (#PCDATA)>
+
+]>
