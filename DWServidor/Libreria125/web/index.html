@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Libreria</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Formulario de datos de los libros</h1>
+        <form action="LibroServlet" method="post">
+            <label>Titulo: <input type="text" name="titulo"></label><br><br>
+            <label>Autor: <input type="text" name="autor"></label><br><br>
+            <label>Precio: <input type="number" name="precio" step="0.01"></label><br><br>
+            <label>Número de páginas: <input type="number" name="numpag"></label><br><br>
+            <label for="Genero" >Selecciona un género: </label>
+            <select id="genero" name="genero">
+                <option value="NOVELA"> NOVELA </option>
+                <option value="POESIA"> POESIA </option>
+                <option value="ENSAYO"> ENSAYO </option>
+                <option value="CIENCIA"> CIENCIA </option>
+                <option value="HISTORIA"> HISTORIA </option>
+                <option value="FANTASIA"> FANTASIA </option>
+                <option value="TERROR"> TERROR </option>
+            </select>
+            <br><br>
+            <input type="submit" value="Enviar">
+        </form>
+    </body>
+</html>
+
