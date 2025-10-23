@@ -1,0 +1,12 @@
+div#paginacion{
+    padding: 2em;
+    border: 1px solid #808080;
+    background-color: #C0C0C0;
+}
+#paginacion .derecha{
+    float: right;
+    clear: right;
+}
+#paginacion .izquierda{
+    float: left;
+}
