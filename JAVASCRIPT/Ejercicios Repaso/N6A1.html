@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 13 - Adivina el número</h2>
+    <input type="number" id="numero" placeholder="Tu intento">
+    <button id="comprobar">Comprobar</button>
+    <p id="mensaje"></p>
+
+    <script>
+        var num = Math.floor(Math.random() * 10) + 1;
+        console.log(num);
+
+        window.onload = function () {
+            document.getElementById("comprobar").onclick = acierto;
+        }
+
+        function acierto(event) {
+            event.preventDefault();
+            
+            var numInt = document.getElementById("numero").value;
+            var mensaje = document.getElementById("mensaje");
+            if (numInt > num) {
+                mensaje.textContent = "Inténtalo de nuevo. Pista: El número es mas pequeño.";
+            } else {
+                mensaje.textContent = "Inténtalo de nuevo. Pista: El número es mas grande.";
+            }
+
+            if (numInt == num) {
+                mensaje.textContent = "¡Has adivinado el numero!";
+            }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

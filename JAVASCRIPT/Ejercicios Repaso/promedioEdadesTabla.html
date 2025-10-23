@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tablas - Ejercicio 6</title>
+</head>
+
+<body>
+    <h2>Ejercicio 6 - Promedio de edades</h2>
+    <table id="tabla" border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+        </tr>
+        <tr>
+            <td>Ana</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>David</td>
+            <td>40</td>
+        </tr>
+        <tr>
+            <td>Eva</td>
+            <td>30</td>
+        </tr>
+    </table>
+    <button id="promedio">Calcular promedio</button>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("promedio").onclick = calcularPromedio;
+        }
+
+        function calcularPromedio() {
+            var tabla = document.getElementById("tabla");
+            var filas = tabla.rows;
+            var suma = 0;
+            var cantidad = 0;
+
+            // Empezamos en 1 para saltar la cabecera
+            for (var i = 1; i < filas.length; i++) {
+                var edad = parseInt(filas[i].cells[1].textContent);
+                suma += edad;
+                cantidad++;
+            }
+            var promedio = suma / cantidad;
+            // Crear nueva fila con el resultado
+            var filaPromedio = tabla.insertRow();
+            var celdaNombre = filaPromedio.insertCell(0);
+            var celdaEdad = filaPromedio.insertCell(1);
+
+            celdaNombre.textContent = "Promedio";
+            celdaEdad.textContent = promedio +" años";
+        }
+    </script>
+</body>
+
+</html>

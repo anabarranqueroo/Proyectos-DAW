@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tablas - Ejercicio 7</title>
+</head>
+
+<body>
+    <h2>Ejercicio 7 - Filtrar por nombre</h2>
+    <input type="text" id="filtro" placeholder="Buscar por nombre...">
+    <table id="tabla" border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+        </tr>
+        <tr>
+            <td>Carlos</td>
+            <td>19</td>
+        </tr>
+        <tr>
+            <td>Ana</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>Beatriz</td>
+            <td>31</td>
+        </tr>
+    </table>
+
+    <script>
+        window.onload = function () {
+            var filtro = document.getElementById("filtro");
+            var tabla = document.getElementById("tabla");
+
+            filtro.onkeyup = function () {
+                var texto = filtro.value.toLowerCase();
+                var filas = tabla.getElementsByTagName("tr");
+
+                for (var i = 1; i < filas.length; i++) { // empezamos en 1 para saltar el encabezado
+                    var celda = filas[i].getElementsByTagName("td")[0];
+                    var nombre = celda.textContent.toLowerCase();
+
+                    if (nombre.indexOf(texto) > -1) {
+                        filas[i].style.display = "";
+                    } else {
+                        filas[i].style.display = "none";
+                    }
+                }
+            };
+        };
+    </script>
+</body>
+
+</html>

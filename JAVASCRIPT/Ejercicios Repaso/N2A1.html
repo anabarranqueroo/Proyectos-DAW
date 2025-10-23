@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 4 - Contar clics</h2>
+    <button id="boton">Haz clic</button>
+    <p id="contador">Has hecho 0 clics.</p>
+
+    <script>
+        var cont = 0;
+        window.onload = function(){
+            document.getElementById("boton").onclick = contador;
+        }
+        function contador(){
+            cont ++;
+            var res = document.getElementById("contador");
+            res.textContent = "Has hecho " +cont+" clic.";
+        }
+    </script>
+
+</body>
+
+</html>

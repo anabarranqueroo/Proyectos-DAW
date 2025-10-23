@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 7 - Par o impar</h2>
+    <form id="form">
+        <input type="number" id="numero" placeholder="Escribe un número">
+        <button type="submit">Comprobar</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("form").onsubmit = comprobar;
+        }
+        function comprobar(event){
+            event.preventDefault(); 
+            var num = document.getElementById("numero").value;
+            var res = document.getElementById("resultado");
+            if(num % 2 == 0 && num != 0){
+                res.textContent = "Es par";
+            }else if(num == 0){
+                res.textContent = "El 0 no es nada";
+            }else{
+                res.textContent = "Es impar";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

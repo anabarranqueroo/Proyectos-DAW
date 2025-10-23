@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 15 - Contador ascendente</title>
+  <style>
+    #contador {
+      font-size: 36px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ejercicio 15 - Contador ascendente</h2>
+  <div id="contador">0</div>
+
+  <script>
+    var c = document.getElementById("contador");
+    var contador = 0;
+
+    function aumentaCont(){
+        contador++;
+        c.textContent = contador;
+    }
+
+    setInterval(aumentaCont, 1000);
+
+  </script>
+</body>
+</html>

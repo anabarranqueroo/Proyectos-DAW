@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tablas - Ejercicio 1</title>
+</head>
+
+<body>
+    <h2>Ejercicio 1 - Crear tabla desde JS</h2>
+    <div id="contenedor"></div>
+
+    <script>
+        var contenedor = document.getElementById("contenedor");
+        var tabla = document.createElement("table");
+        tabla.border = "2";
+        tabla.style.borderCollapse = "collapse";
+        var body = document.createElement("tbody");
+        for (let i = 0; i < 3; i++) {
+            var tr = document.createElement("tr");
+            for (let j = 0; j < 3; j++) {
+                var td = document.createElement("td");
+                td.textContent = "++++";
+                tr.appendChild(td);
+            }
+            body.appendChild(tr);
+        }
+        tabla.appendChild(body);
+        contenedor.appendChild(tabla);
+    </script>
+</body>
+
+</html>

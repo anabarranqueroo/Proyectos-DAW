@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 3 - Cambiar estilo</h2>
+    <p id="parrafo">Este texto va a cambiar su estilo</p>
+    <button id="cambiar">Cambiar estilo</button>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("cambiar").onclick = estilos;
+        }
+        function estilos(){
+            var parrafo = document.getElementById("parrafo");
+            parrafo.style.color = "red";
+            parrafo.style.fontSize = "50px";
+            parrafo.style.fontWeight = "bold";
+        }
+    </script>
+
+</body>
+
+</html>

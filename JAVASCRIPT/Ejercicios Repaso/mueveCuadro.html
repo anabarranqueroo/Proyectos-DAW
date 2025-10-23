@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 9 - Mover con teclado</title>
+    <style>
+        #area {
+            width: 300px;
+            height: 300px;
+            border: 3px solid rgb(21, 98, 57);
+            position: relative;
+            margin: 20px auto;
+        }
+
+        #cuadro {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(71, 255, 154);
+            position: absolute;
+            top: 125px;
+            left: 125px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Ejercicio 9 - Mover cuadrado con teclado</h2>
+    <div id="area">
+        <div id="cuadro"></div>
+    </div>
+
+    <script>
+        var cuadro = document.getElementById("cuadro");
+        var area = document.getElementById("area");
+
+        cuadro.style.top = "125px";
+        cuadro.style.left = "125px";
+
+        document.onkeydown = function (event) {
+            var top = parseInt(cuadro.style.top);
+            var left = parseInt(cuadro.style.left);
+
+            var areawidth = area.clientWidth;
+            var areaheight = area.clientHeight;
+            var cuadroWidth = cuadro.clientWidth;
+            var cuadroHeight = cuadro.clientHeight;
+            var pixeles = 30;
+
+            if (event.key == "ArrowUp") {
+                if (top - pixeles >= 0) {
+                    cuadro.style.top = (top - pixeles) + "px";
+                }
+            }
+            if (event.key == "ArrowDown") {
+                if (top + pixeles <= areaheight - cuadroHeight) {
+                    cuadro.style.top = (top + pixeles) + "px";
+                }
+            }
+            if (event.key == "ArrowRight") {
+                if (left + pixeles <= areawidth - cuadroWidth) {
+                    cuadro.style.left = (left + pixeles) + "px";
+                }
+            }
+            if (event.key == "ArrowLeft") {
+                if (left - pixeles >= 0) {
+                    cuadro.style.left = (left - pixeles) + "px";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

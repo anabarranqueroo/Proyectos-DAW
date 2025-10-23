@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 16 - Calendario simple</title>
+  <style>
+    #fecha {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ejercicio 16 - Calendario simple</h2>
+  <div id="fecha"></div>
+    
+  <script>
+    var fecha = new Date();
+    var texto = document.getElementById("fecha");
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth()+1; //Los meses van de 0 a 11.
+    var año = fecha.getFullYear();
+
+    if(dia < 10){
+        dia = '0'+dia;
+    }
+    if(mes < 10){
+        mes = '0'+mes;
+    }
+
+    texto.textContent = dia+"/"+mes+"/"+año;
+  </script>
+</body>
+</html>

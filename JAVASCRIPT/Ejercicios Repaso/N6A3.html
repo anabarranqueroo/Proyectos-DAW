@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 15 - Conversor Celsius/Fahrenheit</h2>
+    <input type="number" id="celsius" placeholder="Grados Celsius">
+    <button id="convertir">Convertir</button>
+    <p id="resultado"></p>
+
+    <script>
+        // Convierte C a F con la fórmula (C × 9/5) + 32
+        window.onload = function(){
+            document.getElementById("convertir").onclick = convertidor;
+        }
+        function convertidor(){
+            var c = document.getElementById("celsius").value;
+            var res = document.getElementById("resultado");
+            res.textContent = (c* 9/5)+32;
+        }
+    </script>
+
+</body>
+
+</html>

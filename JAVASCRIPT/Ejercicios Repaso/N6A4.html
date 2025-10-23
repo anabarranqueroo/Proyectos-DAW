@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 16 - Número aleatorio</h2>
+    <button id="generar">Generar</button>
+    <p id="resultado"></p>
+
+    <script>
+        // Genera un número aleatorio del 1 al 100
+        window.onload = function(){
+            document.getElementById("generar").onclick = generar;
+        }
+        function generar(event){
+            event.preventDefault();
+            var num = Math.floor(Math.random()*100)+1;
+            var res = document.getElementById("resultado");
+            res.textContent = num;
+        }
+    </script>
+
+</body>
+
+</html>

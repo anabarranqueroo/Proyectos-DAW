@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 2 - Cambiar color</title>
+</head>
+<body>
+  <h2>Ejercicio 2 - Cambiar color de fondo</h2>
+  <button id="colorBtn">Cambiar color</button>
+
+  <script>
+    window.onload = function(){
+        document.getElementById("colorBtn").onclick = cambiaFondo;
+    }
+
+    function cambiaFondo(){
+        document.body.style.backgroundColor = "#"+ Math.floor(Math.random()*16777215).toString(16);
+    }
+  </script>
+</body>
+</html>

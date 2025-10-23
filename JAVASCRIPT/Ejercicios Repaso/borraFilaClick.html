@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tablas - Ejercicio 4</title>
+</head>
+
+<body>
+    <h2>Ejercicio 4 - Eliminar fila</h2>
+    <table id="tabla" border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Acción</th>
+        </tr>
+        <tr>
+            <td>Lucía</td>
+            <td>21</td>
+            <td><button>Eliminar</button></td>
+        </tr>
+        <tr>
+            <td>Pedro</td>
+            <td>33</td>
+            <td><button>Eliminar</button></td>
+        </tr>
+    </table>
+
+    <script>
+        window.onload = function(){
+            var botones = document.getElementsByTagName("button");
+            for(var i =0; i<botones.length; i++){
+                botones[i].onclick = eliminar;
+            }
+        }
+
+        function eliminar(){
+            var fila = this.parentNode.parentNode; //Se refiere al tr. Con un parentNode es el td.
+            fila.remove();
+        }
+    </script>
+</body>
+
+</html>

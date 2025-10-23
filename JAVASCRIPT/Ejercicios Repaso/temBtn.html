@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso 5 - Temporizador</title>
+</head>
+
+<body>
+    <h2>Repaso 5 - Temporizador</h2>
+    <div id="tiempo">0</div>
+    <button id="iniciar">Iniciar</button>
+    <button id="detener">Detener</button>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("iniciar").onclick = inicia;
+            document.getElementById("detener").onclick = detiene;
+        }
+        
+        var intervalo = null;
+
+        function inicia() {
+            if (intervalo === null) {
+                intervalo = setInterval(() => {
+                    var tiempo = document.getElementById("tiempo");
+                    var contador = parseInt(tiempo.textContent);
+                    contador++;
+                    tiempo.textContent = contador;
+                }, 1000);
+            }
+
+        }
+
+        function detiene() {
+            clearInterval(intervalo);
+            intervalo = null;
+        }
+
+
+    </script>
+</body>
+
+</html>

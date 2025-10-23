@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso 7 - Reloj 12h / 24h</title>
+</head>
+
+<body>
+    <h2>Repaso 7 - Reloj con cambio de formato</h2>
+    <div id="reloj">00:00:00</div>
+    <button id="formato">Cambiar formato</button>
+
+    <script>
+        let formatoActual = "24";
+
+        window.onload = function () {
+            setInterval(actualizarReloj, 1000);
+            document.getElementById("formato").onclick = cambiarFormato;
+        };
+
+        function cambiarFormato() {
+            formatoActual = (formatoActual === "24") ? "12" : "24";
+        }
+
+        function actualizarReloj() {
+            const reloj = document.getElementById("reloj");
+            const fecha = new Date();
+            let horas = fecha.getHours();
+            let min = fecha.getMinutes();
+            let seg = fecha.getSeconds();
+            let sufijo = ""; 
+
+            if (formatoActual === "12") {
+                sufijo = (horas >= 12) ? " PM" : " AM";
+                horas = horas % 12;
+                if (horas === 0) horas = 12; 
+            }
+
+            if (horas < 10) horas = '0' + horas;
+            if (min < 10) min = '0' + min;
+            if (seg < 10) seg = '0' + seg;
+
+            reloj.innerHTML = horas + ":" + min + ":" + seg + sufijo;
+        }
+    </script>
+</body>
+
+</html>

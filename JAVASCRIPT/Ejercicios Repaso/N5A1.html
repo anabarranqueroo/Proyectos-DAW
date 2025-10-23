@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 11 - Tabla de animales</h2>
+    <div id="contenedor"></div>
+
+    <script>
+        var array = ["vaca", "mulo", "toro", "cerdo"];
+
+        var cont = document.getElementById("contenedor");
+        var tabla = document.createElement("table");
+        tabla.border = "2";
+        tabla.style.borderCollapse = "collapse";
+
+        var body = document.createElement("tbody");
+
+        for (let i = 0; i < array.length; i++) {
+            var fila = document.createElement("tr");
+            var columna = document.createElement("td");
+            columna.textContent = array[i];
+            fila.appendChild(columna);
+            body.appendChild(fila);
+        }   
+        tabla.appendChild(body);
+        cont.appendChild(tabla);
+    </script>
+
+</body>
+
+</html>

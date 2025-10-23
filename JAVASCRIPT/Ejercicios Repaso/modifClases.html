@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 4 - Clases CSS</title>
+  <style>
+    .resaltado {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="titulo">Texto de prueba</h2>
+  <button id="toggleClase">Cambiar estilo</button>
+
+  <script>
+    window.onload = function(){
+        document.getElementById("toggleClase").onclick = nuevoEstilo;
+    }
+
+    function nuevoEstilo(){
+        var titulo = document.getElementById("titulo");
+        titulo.className = "resaltado";
+    }
+
+  </script>
+</body>
+</html>

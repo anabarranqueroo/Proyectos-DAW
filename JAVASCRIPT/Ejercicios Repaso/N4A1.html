@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 9 - Fecha actual</h2>
+    <button id="mostrar">Mostrar fecha</button>
+    <p id="resultado"></p>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("mostrar").onclick = fecha;
+        }
+        function fecha() {
+            var fecha = new Date();
+            var texto = document.getElementById("resultado");
+            var dia = fecha.getDate();
+            var mes = fecha.getMonth() + 1;
+            var año = fecha.getFullYear();
+
+            if (dia < 10) {
+                dia = '0' + dia;
+            }
+            if (mes < 10) {
+                mes = '0' + mes;
+            }
+
+            texto.textContent = dia + "/" + mes + "/" + año;
+        }
+
+    </script>
+
+</body>
+
+</html>

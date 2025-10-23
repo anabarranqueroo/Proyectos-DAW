@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tablas - Ejercicio 3</title>
+</head>
+
+<body>
+    <h2>Ejercicio 3 - Añadir filas a una tabla</h2>
+    <form id="form">
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="number" id="edad" placeholder="Edad">
+        <button type="submit">Agregar</button>
+    </form>
+
+    <table id="tabla" border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+        </tr>
+    </table>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("form").onsubmit = creaTabla;
+        }
+
+        function creaTabla(event) {
+            event.preventDefault();  //Para que no se recargue la página. 
+
+            var tabla = document.getElementById("tabla");
+            var nombre = document.getElementById("nombre").value;
+            var edad = document.getElementById("edad").value;
+
+            //Para que no haya campos vacíos.
+            if (nombre === "" || edad === "") {
+                alert("Por favor, completa ambos campos.");
+                return;
+            }
+
+            var body = document.createElement("tbody");
+            var tr = document.createElement("tr");
+            var tdNombre = document.createElement("td");
+            tdNombre.textContent = nombre;
+            var tdEdad = document.createElement("td");
+            tdEdad.textContent = edad;
+
+            tr.appendChild(tdNombre);
+            tr.appendChild(tdEdad);
+            body.appendChild(tr);
+            tabla.appendChild(body);
+
+            //Para que se vacie el formulario.
+            document.getElementById("form").reset();
+        }
+
+    </script>
+</body>
+
+</html>

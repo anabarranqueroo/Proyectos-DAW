@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso 8 - Tema claro/oscuro</title>
+    <style>
+        body {
+            transition: all 0.3s ease;
+        }
+
+        .oscuro {
+            background-color: #222;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Repaso 8 - Cambiar tema</h2>
+    <button id="tema">Modo oscuro</button>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("tema").onclick = tema;
+        }
+
+        function tema() {
+            var btn = document.getElementById("tema");
+            var fondo = document.body;
+
+            if(fondo.className === "oscuro"){
+                fondo.className = "";
+                btn.textContent = "Modo oscuro";
+            }else{
+                fondo.className = "oscuro";
+                btn.textContent = "Modo claro";
+            }
+            
+        }
+
+    </script>
+</body>
+
+</html>

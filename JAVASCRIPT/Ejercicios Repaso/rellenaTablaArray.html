@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tablas - Ejercicio 2</title>
+</head>
+
+<body>
+    <h2>Ejercicio 2 - Tabla con datos</h2>
+    <div id="contenedor"></div>
+
+    <script>
+        const personas = [
+            ["Ana", 25],
+            ["Luis", 30],
+            ["Marta", 22],
+            ["Carlos", 28]
+        ];
+
+        var contenedor = document.getElementById("contenedor");
+        var tabla = document.createElement("table");
+        tabla.border = "2";
+        tabla.style.borderCollapse = "collapse";
+        var head = document.createElement("thead");
+        var encabezado = document.createElement("tr");
+
+        var titulos = ["Nombre", "Edad"];
+
+        for (let j = 0; j < titulos.length; j++) {
+            var th = document.createElement("th");
+            th.textContent = titulos[j];
+            encabezado.appendChild(th);
+        }
+        head.appendChild(encabezado);
+        tabla.appendChild(head);
+
+        var body = document.createElement("tbody");
+
+        for (let i = 0; i < personas.length; i++) {
+            var tr = document.createElement("tr");
+            for (let j = 0; j < personas[i].length; j++) {
+                var td = document.createElement("td");
+                td.textContent = personas[i][j];
+                tr.appendChild(td);
+            }
+            body.appendChild(tr);
+        }
+        tabla.appendChild(body);
+        contenedor.appendChild(tabla);
+
+    </script>
+</body>
+
+</html>

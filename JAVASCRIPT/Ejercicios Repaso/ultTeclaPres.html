@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8 - Tecla presionada</title>
+</head>
+
+<body>
+    <h2>Ejercicio 8 - Detectar teclas</h2>
+    <p>Presiona una tecla:</p>
+    <div id="resultado" style="font-size: 24px; font-weight: bold;"></div>
+
+    <script>
+        document.onkeydown = function(event){
+            var resultado = document.getElementById("resultado");
+            resultado.textContent = "Has presionado la tecla: "+ event.key;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 1 - Cambiar texto</title>
+</head>
+<body>
+  <h2>Ejercicio 1 - Cambiar texto de un párrafo</h2>
+  <p id="mensaje">Texto original.</p>
+  <button id="cambiar">Cambiar texto</button>
+
+  <script>
+    window.onload = function(){
+        document.getElementById("cambiar").onclick = cambiarTexto; 
+    }
+
+    function cambiarTexto(){
+        var mensaje =  document.getElementById("mensaje");
+        mensaje.textContent = "Texto cambiado.";
+    }
+  </script>
+</body>
+</html>

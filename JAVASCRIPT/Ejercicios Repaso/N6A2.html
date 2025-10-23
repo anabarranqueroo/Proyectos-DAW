@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 14 - Lista de tareas</h2>
+    <input type="text" id="tarea" placeholder="Escribe una tarea">
+    <button id="agregar">Agregar</button>
+    <ul id="lista"></ul>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("agregar").onclick = tareas;
+        }
+        function tareas(event){
+            event.preventDefault();
+            var tarea = document.getElementById("tarea").value;
+            var input = document.getElementById("tarea");
+            var lista = document.getElementById("lista");
+            var li = document.createElement("li");
+            li.textContent = tarea;
+            lista.appendChild(li);
+            input.value = "";
+        }
+    </script>
+
+</body>
+
+</html>

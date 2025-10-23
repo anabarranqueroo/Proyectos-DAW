@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 5 - Cambiar color con teclado</h2>
+    <p>Pulsa R, V o A para cambiar el color de fondo</p>
+
+    <script>
+        document.onkeypress = function(event){
+            var fondo = document.body;
+            if (event.key === "r" || event.key === "R"){
+                fondo.style.backgroundColor = "red";
+            }else if(event.key === "v" || event.key === "V"){
+                fondo.style.backgroundColor = "green";
+            }else if(event.key === "a" || event.key === "A"){
+                fondo.style.backgroundColor = "blue";
+            }
+            
+           
+        }
+    </script>
+
+</body>
+
+</html>
