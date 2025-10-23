@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Ejercicio. CREAR TABLAS Y ARRAYS</title>
+
+	<style>
+		.claseInput {
+			width: 3em;
+			margin: 0 .5em .5em 0;
+		}
+
+		#salMatriz {
+			margin-left: 1em;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+		window.onload = function () {
+			document.getElementById("btGenMatriz").onclick = generarinput;
+			document.getElementById("btLlenarMatriz").onclick = llenarinput;
+			document.getElementById("btGenTabla").onclick = generartabla;
+		}
+
+
+		function generarinput() {
+			//Limpiar los inputs.
+			var contenedor = document.getElementById("salMatriz");
+			contenedor.innerHTML = "";
+
+			var numfila = parseInt(document.getElementById("nfilas").value);
+			var numcolumna = parseInt(document.getElementById("ncolumnas").value);
+
+			for (i = 0; i < numfila; i++) {
+				var div = document.getElementById("salMatriz");
+				div.appendChild(document.createElement("br"));
+				
+				for (j = 0; j < numcolumna; j++) {
+					var input = document.createElement("input");
+					input.type = "text";
+					input.className = "claseInput";
+					div.appendChild(input);	
+				}
+				
+			}
+			//Habilita el boton.
+			document.getElementById("btLlenarMatriz").disabled = false;
+		}
+
+		function llenarinput(){
+			var input = document.getElementsByClassName("claseInput");
+
+			for(i = 0; i < input.length; i++){
+				//Numero aleatorio
+				var numaleatorio = Math.floor(Math.random() * 999) + 1;
+				input[i].value = numaleatorio;
+			}
+			//Habilita el boton.
+			document.getElementById("btGenTabla").disabled = false;
+
+		}
+
+		function generartabla(){
+			var input = document.getElementsByClassName("claseInput");
+			var numFila = parseInt(document.getElementById("nfilas").value);
+			var numCol = parseInt(document.getElementById("ncolumnas").value);
+			var numMin = parseInt(document.getElementById("nfiltroI").value);
+
+			var contenedor = document.getElementById("tabla");
+			contenedor.innerHTML = "";
+
+			var tabla = document.createElement("table");
+			tabla.border = "1";
+			tabla.style.borderCollapse = "collapse";
+
+			var tbody = document.createElement("tbody");
+
+			var indice = 0;
+			
+			for(i = 0; i < numFila; i++){
+				var fila = document.createElement("tr");
+				for(j = 0; j < numCol; j++){
+					var celda = document.createElement("td");
+					var valor = parseInt(input[indice].value);
+					//Filtra los numeros.
+					if(valor > numMin){
+						celda.textContent = valor;
+					}else{
+						celda.textContent = "";
+					}
+
+					celda.style.width = "3em";
+            		celda.style.textAlign = "center";
+            		fila.appendChild(celda);
+            		indice++;
+				}
+				tbody.appendChild(fila);				
+			}
+			tabla.appendChild(tbody);
+    		contenedor.appendChild(tabla);
+		}
+
+
+
+
+	</script>
+
+</head>
+
+<body>
+	<br>
+	<h2>Ejercicio Tablas y Arrays</h2>
+	<h3>Introducir el código javascript necesario, para que al pulsar sobre
+		el botón, se cree un array (matriz) de inputs (elementos DOM) con un número fijo de filas y columnas. </h3>
+
+	<br />
+	<form>
+		<p>
+			<label for="nfilas">Introduce el número de filas:</label>
+			<input type="number" id="nfilas" value="15" min="1" max="100" style="width: 3em" />
+			<br />
+			<label for="ncolumnas">Introduce el número de columnas:</label>
+			<input type="number" id="ncolumnas" value="8" min="1" max="100" style="width: 3em" />
+		</p>
+		<p>
+			<button type="button" id="btGenMatriz">
+				Generar Matriz de Inputs
+			</button>
+			<button type="button" id="btLlenarMatriz" disabled>
+				Llenar Matriz de Inputs
+			</button>
+			<button type="button" id="btGenTabla" disabled>
+				Generar tabla
+			</button>
+		</p>
+	</form>
+	<br>
+
+	<div id="salMatriz">
+		(Aquí se colocará la matriz de inputs)
+	</div>
+
+	<h3>
+		Filtro de tabla:
+	</h3>
+
+	<p>
+		Mostrar solo números >
+		<input type="number" id="nfiltroI" value="500" min="1" max="1000" style="width: 4em" />
+	</p>
+
+	<div id="tabla">
+		(Aquí se colocará la tabla que se cree dinámicamente con javascript.)
+	</div>
+
+</body>
+
+</html>
