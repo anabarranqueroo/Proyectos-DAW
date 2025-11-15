@@ -1,0 +1,16 @@
+caption{
+    caption-side: bottom;
+    color: green;
+}
+table{
+    border: 2px solid green;
+}
+th, tr, td{
+    border: 2px solid green;
+    padding: 5px;
+}
+th{
+    background-color: rgb(93, 177, 93);
+    color: white;
+    padding: 10px;
+}

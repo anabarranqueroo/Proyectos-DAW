@@ -1,7 +1,8 @@
 div#paginacion{
-    padding: 2em;
+    padding: 1em;
     border: 1px solid #808080;
     background-color: #C0C0C0;
+    overflow: hidden;
 }
 #paginacion .derecha{
     float: right;
@@ -9,4 +10,7 @@ div#paginacion{
 }
 #paginacion .izquierda{
     float: left;
+}
+.clear{
+    clear: both;
 }

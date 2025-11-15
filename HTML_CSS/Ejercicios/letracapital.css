@@ -1,0 +1,19 @@
+.capital_1::first-letter{
+    font-size: 3em;
+    font-weight: bold;
+    color: #2A7AE2;
+    font-family: "Garamond", "Palatino Linotype", Palatino, serif;
+    text-transform: uppercase;
+    text-shadow: 
+    2px 2px 0 #F0E6D2, 4px 4px 0 #659cb6;
+    
+}
+.capital_2::first-letter{
+    font-size: 3em;
+    font-weight: bold;
+    color: brown;
+    font-family: "Garamond", "Palatino Linotype", Palatino, serif;
+    text-transform: uppercase;
+    text-shadow: 
+    2px 2px 0 #F0E6D2, 4px 4px 0 #f56d54;
+}
