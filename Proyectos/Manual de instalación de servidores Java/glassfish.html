@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de configuración de Eclipse GlassFish</title>
+    <link rel="stylesheet" href="css/manuales.css">
+</head>
+
+<body>
+<header id="Inicio">
+    <nav>
+        <ul>
+            <li><a href="index.html">Página Principal</a></li>
+            <li><a href="tomcat.html">Manual de Apache Tomcat</a></li>
+            <li><a href="wildfly.html">Manual de Wildfly</a></li>
+        </ul>
+    </nav>
+
+    <h1>Manual de Configuración de GlassFish</h1>
+    <p>· GlassFish ·</p>
+</header>
+<main>
+    <section>
+        <article>
+            <!-- Información general -->
+            <h3 id="Informacion">¿Qué es GlassFish?</h3>
+            <p>GlassFish Server es un servidor de aplicaciones de código abierto compatible con Java EE y Jakarta
+                EE.
+                Proporciona un entorno integral para el desarrollo, ejecución y despliegue de aplicaciones
+                empresariales
+                Java, soportando tecnologías como servlets, JSP, EJB, JPA, JMS y Web Services. Es la implementación
+                de
+                referencia oficial de Jakarta EE, utilizada para probar y validar nuevas especificaciones antes de
+                su
+                publicación oficial. GlassFish es gratuito, multiplataforma, modular, extensible y ofrece una
+                interfaz de administración web que simplifica la configuración y gestión de aplicaciones.</p>
+            <div class="cajas">
+                <details>
+                    <summary>COMPONENTES</summary>
+                    <p>
+                        - <b>HK2 Kernel.</b> Responsable de la gestión de los servicios internos del servidor.<br>
+                        - <b>Grizzly.</b> Encargado de manejar conexiones y solicitudes web.<br>
+                        - <b>GlassFish Web Container.</b> Contenedor de Servlets y JSP para ejecutar aplicaciones
+                        web.<br>
+                        - <b>EJB Container.</b> Gestiona los Enterprise JavaBeans y la lógica empresarial.<br>
+                        - <b>JPA Provider.</b> Implementación de JPA para acceso a bases de datos.<br>
+                        - <b>Admin Console.</b> Interfaz web para configuración, despliegue y monitoreo de
+                        aplicaciones.<br>
+                        - <b>asadmin CLI.</b> Línea de comandos para administración avanzada.
+                    </p>
+                </details>
+                <details>
+                    <summary>VENTAJAS</summary>
+                    <p>
+                        - Permite despliegues en caliente sin necesidad de reiniciar el servidor.<br>
+                        - Soporta clustering y balanceo de carga.<br>
+                        - Integración con IDEs y seguridad configurable.<br>
+                        - Gestión avanzada de recursos.<br>
+                        - Alta estabilidad y rendimiento en entornos de producción.
+                    </p>
+                </details>
+            </div>
+            <br>
+            <b id="versiones">VERSIONES DISPONIBLES:</b>
+            <ul class="versiones">
+                <li><a href="https://www.eclipse.org/downloads/download.php?file=/glassfish/glassfish-5.1.0.zip"
+                        target="_blank">GlassFish
+                        5.</a> Compatible con Java EE 8.</li>
+                <li><a href="https://www.eclipse.org/downloads/download.php?file=/ee4j/glassfish/glassfish-6.2.5.zip"
+                        target="_blank">GlassFish
+                        6.</a> Compatible con Jakarta EE 9.</li>
+                <li><a href="https://www.eclipse.org/downloads/download.php?file=/ee4j/glassfish/glassfish-7.0.25.zip"
+                        target="_blank">GlassFish
+                        7.</a> Compatible con Jakarta EE 10.</li>
+            </ul>
+        </article>
+
+        <article>
+            <!-- Requisitos -->
+            <h3 id="Requisitos">Requisitos previos para su instalación</h3>
+            <details>
+                <summary>JDK 11 o superior.</summary>
+                <p>Se requiere Java Development Kit (JDK) versión 11 o superior, siendo recomendable JDK 17.
+                    Verifique la versión instalada ejecutando <i>javac -version</i> en la consola.</p>
+            </details>
+            <details>
+                <summary>Variables de entorno configuradas.</summary>
+                <p>Defina correctamente las variables de entorno: <i>JAVA_HOME</i> apuntando al directorio del JDK,
+                    <i>CATALINA_HOME</i> (si aplica) y <i>PATH</i> incluyendo <i>%JAVA_HOME%\bin</i>.
+                </p>
+            </details>
+            <details>
+                <summary>Sistemas Operativos compatibles.</summary>
+                <p>Windows 10, Windows 11, Linux y macOS.</p>
+            </details>
+            <details>
+                <summary>Espacio mínimo en el disco.</summary>
+                <p>Se requieren al menos 300 MB de espacio libre en disco.</p>
+            </details>
+            <details>
+                <summary>RAM mínima.</summary>
+                <p>Se recomienda disponer de 1 GB de RAM, siendo óptimo 2 GB o más para entornos de desarrollo y
+                    producción.</p>
+            </details>
+        </article>
+
+        <article>
+            <!-- Instalación -->
+            <h3 id="Instalacion">¿Cómo instalamos GlassFish en Windows?</h3>
+            <p>Para instalar GlassFish, acceda a la sección de <a href="#versiones">versiones disponibles</a> y
+                seleccione la versión deseada, o ingrese directamente a <a
+                    href="https://projects.eclipse.org/projects/ee4j.glassfish/downloads"
+                    target="_blank">https://projects.eclipse.org/projects/ee4j.glassfish/downloads</a>.
+            </p>
+            <p>En la página oficial, elija la versión de GlassFish que desea instalar y haga clic sobre ella.</p>
+
+            <figure>
+                <img src="img/enlacesg.png" alt="enlaces">
+                <figcaption>Página de enlaces de descarga</figcaption>
+            </figure>
+
+            <blockquote>
+                1. Una vez descargado el archivo .zip, descomprímalo en el directorio de instalación deseado. Esto
+                creará el dominio predeterminado <i>'domain1'</i> ya configurado.
+            </blockquote>
+
+            <blockquote>
+                2. Para iniciar GlassFish, abra la carpeta <i>'bin'</i>, haga clic derecho en <i>'Abrir en Terminal'</i>
+                y ejecute:
+                <pre>
+                        <code>
+                            ./asadmin start-domain
+                        </code>
+                    </pre>
+            </blockquote>
+
+            <figure>
+                <img src="img/iniciog.png" alt="inicio" class="imggrande">
+                <figcaption>Comando para iniciar el dominio</figcaption>
+            </figure>
+
+            <blockquote>
+                3. Tras unos segundos, el servidor estará en funcionamiento y listo para recibir solicitudes. Acceda
+                mediante navegador a
+                <a href="http://localhost:8080" target="_blank">http://localhost:8080</a> para verificar el inicio
+                correcto.
+            </blockquote>
+
+            <figure>
+                <img src="img/piniciog.png" alt="inicio" class="imggrande">
+                <figcaption>Pantalla de inicio del servidor</figcaption>
+            </figure>
+
+            <blockquote>
+                4. Para detener el dominio, ejecute el siguiente comando:
+                <pre>
+                        <code>
+                            ./asadmin stop-domain
+                        </code>
+                    </pre>
+            </blockquote>
+        </article>
+
+        <article>
+            <!-- Configuración -->
+            <h3 id="Configuracion">¿Cómo se configura GlassFish?</h3>
+            <blockquote>
+                1. Para crear un nuevo dominio, acceda a la terminal y ejecute:
+                <pre>
+                        <code>
+                            ./asadmin create-domain nombre_del_dominio_nuevo
+                        </code>
+                    </pre>
+                2. El sistema solicitará usuario y contraseña para completar la configuración del dominio.
+            </blockquote>
+
+            <figure>
+                <img src="img/dominio.png" alt="dominio" class="imggrande">
+                <figcaption>Ejemplo de dominio recién creado</figcaption>
+            </figure>
+
+            <b>⚠️Nota:</b> Detenga el dominio antes de realizar cualquier modificación y reinícielo después de aplicar
+            cambios.
+
+            <blockquote>
+                3. Para administrar usuarios y roles, edite el archivo <i>keyfile</i> ubicado en domains >
+                nombre_dominio > config, con estructura similar:
+                <pre>
+                        <code>
+                            <i>usuario;contraseña;rol1,rol2...</i>
+                                admin;admin1234;admin
+                                soporte;soporte123;soporte,usuarios
+                                usuario1;usuario123;usuarios
+                        </code>
+                    </pre>
+            </blockquote>
+
+            <blockquote>
+                4. Para modificar los puertos HTTP o HTTPS, edite el archivo <i>'domain.xml'</i> ubicado en la carpeta
+                <i>config</i>. Dentro de este archivo, la sección <i>'&lt;network-listener&gt;'</i> define
+                los conectores de red:
+                <pre>
+                        <code>
+                            &lt;network-listeners&gt;
+                                &lt;network-listener port="8080" protocol="http-listener-1" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp"/&gt;
+                                &lt;network-listener port="8181" protocol="http-listener-2" name="http-listener-2" thread-pool="http-thread-pool" transport="tcp"/&gt;
+                                &lt;network-listener port="4848" protocol="admin-listener" name="admin-listener" thread-pool="admin-thread-pool" transport="tcp"/&gt;
+                            &lt;/network-listeners&gt;
+                        </code>
+                    </pre>
+                Actualice los valores de los puertos según sea necesario.
+            </blockquote>
+        </article>
+
+        <article>
+            <!-- Base de Datos -->
+            <h3 id="BaseDatos">¿Cómo iniciamos la base de datos?</h3>
+            <blockquote>
+                1. Con el dominio en ejecución, inicie la base de datos ejecutando:
+                <pre>
+                        <code>
+                            ./asadmin start-database --dbhome ruta-directorio
+                        </code>
+                    </pre>
+                2. Para detener el servidor de base de datos, utilice:
+                <pre>
+                        <code>
+                            ./asadmin stop-database
+                        </code>
+                    </pre>
+            </blockquote>
+
+            <figure>
+                <img src="img/panelg.png" alt="paneconf" class="imggrande">
+                <figcaption>Panel de administración de GlassFish</figcaption>
+            </figure>
+
+            <blockquote>
+                3. GlassFish proporciona una consola de administración accesible desde <a href="http://localhost:4848"
+                    target="_blank">http://localhost:4848</a>, que ofrece un panel gráfico para
+                supervisión y configuración.
+            </blockquote>
+        </article>
+
+        <article>
+            <!-- Despliegue -->
+            <h3 id="Despliegue">¿Cómo desplegamos una aplicación web en GlassFish?</h3>
+            <blockquote>
+                1. Para desplegar una aplicación, copie el archivo <i>.war</i> o <i>.ear</i> en la carpeta domains >
+                nombre_dominio > autodeploy.
+            </blockquote>
+
+            <blockquote>
+                2. También puede desplegarse mediante consola ejecutando:
+                <pre>
+                        <code>
+                            ./asadmin deploy /ruta_del_archivo/archivo.war
+                        </code>
+                    </pre>
+            </blockquote>
+
+            <blockquote>
+                3. Verifique el correcto funcionamiento accediendo en un navegador a
+                http://localhost:8080/nombre_archivo.
+            </blockquote>
+        </article>
+</section>
+
+<aside>
+    <p>Enlaces de navegación</p>
+    <a href="#Informacion">¿Qué es GlassFish?</a><br>
+    <a href="#Requisitos">Requisitos previos para su instalación</a><br>
+    <a href="#Instalacion">¿Cómo instalamos GlassFish en Windows?</a><br>
+    <a href="#Configuracion">¿Cómo se configura GlassFish?</a><br>
+    <a href="#BaseDatos">¿Cómo iniciamos la base de datos?</a><br>
+    <a href="#Despliegue">Cómo desplegamos una aplicación web en GlassFish?</a><br>
+</aside>
+<a href="#Inicio" class="boton">Volver arriba</a>
+<div class="botones_manuales">
+    <a href="tomcat.html" class="boton_anterior">Anterior: Manual de Tomcat</a>
+    <a href="wildfly.html" class="boton_siguiente">Siguiente: Manual de Wildfly</a>
+</div>
+</main>
+<footer>
+    <p> &copy; Manual de Configuración de Servidores Java EE · Diseño de Interfaces Web · 2025</p>
+</footer>
+</body>
+
+</html>
