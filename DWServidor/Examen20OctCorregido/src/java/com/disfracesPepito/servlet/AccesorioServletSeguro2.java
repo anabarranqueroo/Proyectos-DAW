@@ -1,0 +1,58 @@
+package com.disfracesPepito.servlet;
+
+import com.disfracesPepito.modelo.Accesorio;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/AccesorioServletSeguro2")
+public class AccesorioServletSeguro2 extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+        String mensaje = null;
+        try {
+            // 1️⃣ Recoger parámetros del formulario
+            String nombre = request.getParameter("nombre");
+            double precio = Double.parseDouble(request.getParameter("precio"));
+
+            // 2️⃣ Validaciones
+            if (nombre == null || nombre.trim().isEmpty()) {
+                throw new IllegalArgumentException("El nombre no puede estar vacío.");
+            }
+            if (precio <= 0) {
+                throw new IllegalArgumentException("El precio debe ser mayor que 0.");
+            }
+
+            // 3️⃣ Crear objeto Accesorio
+            Accesorio a = new Accesorio(nombre, precio);
+
+             request.setAttribute("accesorio", a);
+
+            // Enviar datos a JSP
+            request.getRequestDispatcher("muestraaccesorio.jsp").forward(request, response);
+
+        } catch (NumberFormatException e) {
+            // Error si precio o páginas no son válidos
+            mensaje = "Error: Precio  no válido";
+            request.setAttribute("error", mensaje);
+            // Enviar datos a JSP
+            request.getRequestDispatcher("muestraaccesorio.jsp").forward(request, response); 
+        } catch (IllegalArgumentException e) {
+            mensaje =  e.getMessage();
+            request.setAttribute("error", mensaje);   
+            request.getRequestDispatcher("muestraaccesorio.jsp").forward(request, response);
+        }
+    }
+
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+
+        doGet(request, response);
+    }
+}
