@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Ejemplo Web Storage</title>
+	<style>
+		div {
+			border: 2px solid blue;
+			margin: 2em;
+
+			padding: 1em;
+		}
+	</style>
+	<script type="text/javascript">
+
+		window.onload = function () {
+			document.getElementById("btGuardar").onclick = guardarDato;
+			document.getElementById("btMostrar").onclick = mostrarDato;
+			document.getElementById("btBorrarDato").onclick = eliminarDato;
+			document.getElementById("btBorrarTodo").onclick = eliminarTodo;
+			document.getElementById("btContenido").onclick = contenido;
+
+			if (localStorage.getItem("numVisitas")) {
+				var visitas = parseInt(localStorage.getItem("numVisitas")) + 1;
+				localStorage.setItem("numVisitas", visitas);
+			} else {
+				localStorage.setItem("numVisitas", 1);
+			}
+			document.getElementById("nvisitas").innerHTML =
+				"Número de visitas: " + localStorage.getItem("numVisitas");
+		}
+
+		miStorage = window.localStorage;
+
+		function guardarDato() {
+			var nombre = document.getElementById("etiqueta").value;
+			var dato = document.getElementById("dato").value;
+			localStorage.setItem(nombre, dato);
+		}
+
+		function mostrarDato() {
+			var nombre = document.getElementById("etiqueta").value;
+			var texto = localStorage.getItem(nombre);
+			var sal = document.getElementById("sal");
+			sal.innerHTML = texto;
+		}
+
+		function eliminarDato() {
+			var nombre = document.getElementById("etiqueta").value;
+			localStorage.removeItem(nombre);
+		}
+
+		function eliminarTodo() {
+			localStorage.clear();
+		}
+
+		function contenido() {
+			var c = document.getElementById("contenido");
+			var texto = "";
+
+			for (var i = 0; i < localStorage.length; i++) {
+				var clave = localStorage.key(i);
+				if (clave !== "numVisitas") {
+					var t = localStorage.getItem(clave);
+					texto = texto + clave + " - " + t + "<br>";
+				}
+			}
+			c.innerHTML = texto;
+		}
+	</script>
+</head>
+
+<body>
+
+	<h3>Esto es un ejermplo de Web Storage</h3>
+
+	<label>Nombre: </label>
+	<input type="text" name="etiqueta" id="etiqueta">
+	<br><br>
+	<label>Dato: </label>
+	<input type="text" name="dato" id="dato">
+	<br /><br />
+
+	<hr>
+	<br><br>
+	<button id="btGuardar">Guardar Dato</button>
+	<button id="btMostrar">Mostrar Dato</button>
+	<button id="btContenido">Contenido del Web Storage</button>
+
+	<button id="btBorrarDato">Borrar Dato</button>
+	<button id="btBorrarTodo">Borrar Todo</button>
+
+	<p>
+	<div id="sal">
+		Aquí ponemos el dato leido del localStorage
+	</div>
+	<div id="nvisitas">
+		Aquí se muestra el número de visitas
+	</div>
+	</p>
+	<p>
+	<div id="contenido">
+		Contenido de todo el Web Storage
+	</div>
+	</p>
+
+</body>
+
+</html>
