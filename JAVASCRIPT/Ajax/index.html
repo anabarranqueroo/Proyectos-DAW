@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Países y Ciudades</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        select {
+            margin-bottom: 15px;
+        }
+    </style>
+    <script type="text/javascript">
+        var url = "servidor.php";
+
+        window.onload = function(){
+            cargaPaises();
+            document.getElementById("pais").onchange = function(){
+                cargaCiudades();
+            };
+        }
+
+        function cargaPaises(){
+            fetch("servidor.php?servicio=paises")
+                .then(r => r.json())
+                .then(datos => llenaPaises(datos))
+        }
+
+        function llenaPaises(datos){
+            var sel = document.getElementById("pais");
+            sel.options.length = 1;
+            for(var i = 0; i < datos.length; i++){
+                var opcion = document.createElement("option");
+                opcion.value = datos[i].CODIGO;
+                opcion.text = datos[i].NOMBRE;
+                sel.appendChild(opcion);
+            }
+        }
+
+        function cargaCiudades(){
+            var codPais = document.getElementById("pais").value;
+            if(codPais == "-1") return;
+            fetch("servidor.php?servicio=ciudades&codigop="+codPais)
+                .then(r => r.json())
+                .then(datos => llenaCiudades(datos))
+        }
+
+        function llenaCiudades(datos){
+            var sel2 = document.getElementById("ciudad");
+            sel2.options.length = 1;
+            for(var i = 0; i < datos.length; i++){
+                var opcion2 = document.createElement("option");
+                opcion2.value = datos[i].CODIGO_PAIS;
+                opcion2.text = datos[i].NOMBRE;
+                sel2.appendChild(opcion2);
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <h2>Seleccione un país y su ciudad</h2>
+    <label for="pais">País:</label>
+    <select id="pais">
+        <option value="-1">Seleccione un país</option>
+    </select>
+    <br>
+    <label for="ciudad">Ciudad:</label>
+    <select id="ciudad">
+        <option value="-1">Seleccione primero un país</option>
+    </select>
+</body>
+
+</html>
