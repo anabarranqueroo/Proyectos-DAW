@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pedido</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Formulario para introducir un pedido.</h1>
+        <form action="PedidoServlet" method="post">
+            <label>Referencia: <input type="text" name="referencia"></label><br><br>
+            <label>Cantidad Total(€): <input type="number" name="cantidad" step="0.01"></label><br><br>
+            <label>Fecha de entrega posible 1 (dd/mm/yyyy): <input type="date" name="fecEnt1"></label><br><br>
+            <label>Fecha de entrega posible 2 (dd/mm/yyyy): <input type="date" name="fecEnt2"></label><br><br>
+            <br><br>
+            <input type="submit" value="Enviar">
+            <br><br>
+            <a href="index.html">Volver al indice.</a>
+        </form>
+    </body>
+</html>
+
