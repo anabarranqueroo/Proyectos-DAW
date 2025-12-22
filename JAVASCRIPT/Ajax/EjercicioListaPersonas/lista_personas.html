@@ -48,8 +48,12 @@
 
 		window.onload = function () {
 			cargaTabla();
+			document.getElementById("btNuevaPersona").onclick = mostrarFormulario;
+			document.getElementById("btCancelar").onclick = cancelarFormulario;
+			document.getElementById("btAnade").onclick = anadir;
 		}
 
+		//Funcion que carga los datos.
 		function cargaTabla() {
 			var p = {
 				servicio: "listar"
@@ -65,7 +69,7 @@
 				.then(datos => console.log(datos));
 		}
 
-		//CREA LA TABLA.
+		//Funcion que crea la tabla.
 		function CreaFila(aCol, tipo) {
 			if (tipo == "cabecera") {
 				tipo = "th";
@@ -84,25 +88,69 @@
 		function creaTabla(datos) {
 			var tabla = document.getElementById("filas_tabla");
 			var datospintar = datos.map(function (d) {
-				var btnB = `<button onclick="Borrar(${d.ID}") >Borrar</button>`;
-				var btnE = `<button onclick="Editar(${d.ID}") >Editar</button>`;
+				var btnB = `<button onclick="Borrar(${d.ID})">Borrar</button>`;
+				var btnE = `<button onclick="Editar(${d.ID})">Editar</button>`;
 				return [d.ID, d.DNI, d.NOMBRE, d.APELLIDOS, btnB, btnE];
 			});
 
 			console.log(datospintar);
 
-			tabla.innerHTML = ""; 
+			tabla.innerHTML = "";
 			datospintar.forEach(function (d) {
 				tabla.appendChild(CreaFila(d));
 			});
 		}
 
-		function Borrar(){
+		//Funcion borrar usuario.
+		function Borrar(id) {
+			var p = {
+				servicio: "borrar",
+				id: id
+			}
+
+			var parametros = {
+				method: 'POST', body: JSON.stringify(p)
+			};
+
+			fetch(url, parametros)
+				.then(r => r.json())
+				.then(datos => creaTabla(datos));
+		}
+
+		//Funcion editar usuario
+		function Editar() {
 
 		}
 
-		function Editar(){
-			
+		//Funciones de mostrar y quitar formulario de alta de usuario.
+		function mostrarFormulario() {
+			document.getElementById("formPersonas").classList.add("ver");
+		}
+
+		function cancelarFormulario() {
+			document.getElementById("formPersonas").classList.remove("ver");
+		}
+
+		//Funcion alta de usuario.
+		function anadir() {
+			var p = {
+				servicio: "insertar",
+				dni: document.getElementById("dni").value,
+				nombre: document.getElementById("nombre").value,
+				apellidos: document.getElementById("apellidos").value
+			}
+
+			var parametros = {
+				method: 'POST', body: JSON.stringify(p)
+			};
+
+			fetch(url, parametros)
+				.then(r => r.json())
+				.then(datos => {
+					cancelarFormulario();
+					creaTabla(datos);
+				});
+
 		}
 
 

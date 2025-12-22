@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Departamentos y Empleados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-bottom: 1em;
+        }
+
+        th,
+        td {
+            border: 1px solid #999;
+            padding: 0.5em;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .formProfes {
+            visibility: hidden;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            z-index: 11;
+            background-color: #ffe0e0;
+            border: 2px solid maroon;
+            border-radius: 10px;
+            padding: 1em;
+            color: maroon;
+        }
+
+        .formProfes div label {
+            display: block;
+            margin-top: 0.5em;
+        }
+
+        .formProfes .btn {
+            margin-top: 1em;
+        }
+
+        .ver {
+            visibility: visible;
+        }
+
+        .btn {
+            padding: 0.3em 0.6em;
+            cursor: pointer;
+            margin: 0.3em 0;
+        }
+
+        #deptoDelProfe {
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+    <script type="text/javascript">
+
+        var url = "servicio.php";
+        var idDeptAct = null;
+
+        window.onload = function () {
+            cargaTabla();
+            document.getElementById("btNuevoDepto").onclick = mostrarFormDept;
+            document.getElementById("btCancelarDepto").onclick = cancelarFormDept;
+            document.getElementById("btAnadeDepto").onclick = anadirDept;
+            document.getElementById("btNuevaProfe").onclick = mostrarFormEmpl;
+            document.getElementById("btCancelar").onclick = cancelarFormEmpl;
+            document.getElementById("btAnade").onclick = anadirEmpl;
+        }
+
+        function cargaTabla() {
+            var p = {
+                servicio: "departamentos"
+            }
+
+            var parametros = {
+                method: 'POST', body: JSON.stringify(p)
+            };
+
+            fetch(url, parametros)
+                .then(r => r.json())
+                .then(datos => creaTabla(datos))
+                .then(datos => console.log(datos))
+        }
+
+        function CreaFila(aCol, tipo) {
+            if (tipo == "cabecera") {
+                tipo = "th";
+            } else
+                tipo = "td";
+            var fila = document.createElement("tr");
+            var col;
+            for (var i = 0; i < aCol.length; i++) {
+                col = document.createElement(tipo);
+                col.innerHTML = aCol[i];
+                fila.appendChild(col);
+
+            }
+            return fila;
+        }
+        function creaTabla(datos) {
+            var tbody = document.getElementById("detalle_departamentos");
+            tbody.innerHTML = "";
+            for (var i = 0; i < datos.length; i++) {
+                var fila = CreaFila([datos[i].id, datos[i].nombre, datos[i].descripcion]);
+                var tdSel = document.createElement("td");
+                var botonSel = document.createElement("button");
+                botonSel.innerHTML = "Seleccionar Dept";
+                botonSel.onclick = CargaEmpl;
+                botonSel.dataset.idDept = datos[i].id;
+                botonSel.dataset.nom = datos[i].nombre;
+                tdSel.appendChild(botonSel);
+                fila.appendChild(tdSel);
+                tbody.appendChild(fila);
+            }
+        }
+
+        function mostrarFormDept() {
+            document.getElementById("formDeptos").classList.add("ver");
+            document.getElementById("nombreDepto").value = "";
+            document.getElementById("descripcion").value = "";
+        }
+
+        function cancelarFormDept() {
+            document.getElementById("formDeptos").classList.remove("ver");
+        }
+
+        function anadirDept() {
+            var p = {
+                servicio: "anadeDepto",
+                nombre: document.getElementById("nombreDepto").value,
+                descripcion: document.getElementById("descripcion").value
+            }
+
+            var parametros = {
+                method: 'POST', body: JSON.stringify(p)
+            };
+
+            fetch(url, parametros)
+                .then(r => r.json())
+                .then(datos => {
+                    cancelarFormDept();
+                    creaTabla(datos);
+                });
+        }
+
+        function CargaEmpl(e) {
+            e.preventDefault();
+            var idDept = this.dataset.idDept;
+            var nombreDept = this.dataset.nom;
+            idDeptAct = idDept;
+            document.getElementById("deptoDelProfe").textContent = nombreDept;
+
+            var p = {
+                servicio: "empleados",
+                id_departamento: idDept
+            }
+
+            var parametros = {
+                method: 'POST', body: JSON.stringify(p)
+            };
+
+            fetch(url, parametros)
+                .then(r => r.json())
+                .then(datosempl => creaTablaEmpl(datosempl))
+                .then(datosempl => console.log(datosempl));
+        }
+
+        function CreaFilaEmpl(aCol, tipo) {
+            if (tipo == "cabecera") {
+                tipo = "th";
+            } else
+                tipo = "td";
+            var fila = document.createElement("tr");
+            var col;
+            for (var i = 0; i < aCol.length; i++) {
+                col = document.createElement(tipo);
+                col.innerHTML = aCol[i];
+                fila.appendChild(col);
+
+            }
+            return fila;
+        }
+        function creaTablaEmpl(datosempl) {
+            var tbody = document.getElementById("detalle_profesores");
+            tbody.innerHTML = "";
+
+            for (var i = 0; i < datosempl.length; i++) {
+                var f = CreaFilaEmpl([datosempl[i].id, datosempl[i].dni, datosempl[i].nombre, datosempl[i].apellidos]);
+                var tdE = document.createElement("td");
+                var botonE = document.createElement("button");
+                var tdEd = document.createElement("td");
+                var botonEd = document.createElement("button");
+
+                botonE.innerHTML = "Eliminar";
+                botonE.onclick = eliminarEmpl;
+                botonE.dataset.idempl = datosempl[i].id;
+                botonE.dataset.nombreape = datosempl[i].nombre + " " + datosempl[i].apellidos;
+
+                botonEd.innerHTML = "Editar";
+                botonEd.onclick = editarEmpl;
+                botonEd.dataset.idempl = datosempl[i].id;
+                botonEd.dataset.nombreape = datosempl[i].nombre + " " + datosempl[i].apellidos;
+
+                tdE.appendChild(botonE);
+                tdEd.appendChild(botonEd);
+                f.appendChild(tdE);
+                f.appendChild(tdEd)
+
+                //Añade la fila a la tabla.
+                tbody.appendChild(f);
+            }
+        }
+
+        function mostrarFormEmpl() {
+            document.getElementById("formProfes").classList.add("ver");
+            document.getElementById("dni").value = "";
+            document.getElementById("nombre").value = "";
+            document.getElementById("apellidos").value = "";
+            document.getElementById("btAnade").dataset.idempl = -1;
+            document.getElementById("btAnade").textContent = "Añadir";
+        }
+
+        function cancelarFormEmpl() {
+            document.getElementById("formProfes").classList.remove("ver");
+        }
+
+        function anadirEmpl() {
+            if (this.dataset.idempl == -1) {
+                var p = {
+                    servicio: "anadeEmpleado",
+                    id_departamento: idDeptAct,
+                    dni: document.getElementById("dni").value,
+                    nombre: document.getElementById("nombre").value,
+                    apellidos: document.getElementById("apellidos").value
+                }
+
+                var parametros = {
+                    method: 'POST', body: JSON.stringify(p)
+                };
+
+                fetch(url, parametros)
+                    .then(r => r.json())
+                    .then(datosempl => {
+                        cancelarFormEmpl();
+                        creaTablaEmpl(datosempl);
+                    });
+            } else {
+                var p = {
+                    servicio: "modificaEmpleado",
+                    id: this.dataset.idempl,
+                    id_departamento: idDeptAct,
+                    dni: document.getElementById("dni").value,
+                    nombre: document.getElementById("nombre").value,
+                    apellidos: document.getElementById("apellidos").value
+                }
+
+                var parametros = {
+                    method: 'POST', body: JSON.stringify(p)
+                };
+
+                fetch(url, parametros)
+                    .then(r => r.json())
+                    .then(datosempl => {
+                        cancelarFormEmpl();
+                        creaTablaEmpl(datosempl);
+                    });
+            }
+        }
+
+        function editarEmpl(e) {
+            e.preventDefault();
+            var p = {
+                servicio: "selEmpleadoID",
+                id_departamento: idDeptAct,
+                id: this.dataset.idempl
+            };
+
+            var parametros = {
+                method: 'POST',
+                body: JSON.stringify(p)
+            };
+
+            fetch(url, parametros)
+                .then(r => r.json())
+                .then(datosempl => {
+                    document.getElementById("dni").value = datosempl.dni;
+                    document.getElementById("nombre").value = datosempl.nombre;
+                    document.getElementById("apellidos").value = datosempl.apellidos;
+                    document.getElementById("btAnade").dataset.idempl = datosempl.id;
+                    document.getElementById("btAnade").textContent = "Modificar";
+                    document.getElementById("formProfes").classList.add("ver");
+                })
+        }
+
+        function eliminarEmpl(idempl) {
+            var confirmar = confirm("¿Desea borrar a " + this.dataset.nombreape + "?");
+
+            if (confirmar) {
+				var p = {
+					servicio: "eliminaEmpleado",
+                    id_departamento: idDeptAct,
+					id: this.dataset.idempl
+				}
+
+				var parametros = {
+					method: 'POST', body: JSON.stringify(p)
+				};
+
+				fetch(url, parametros)
+					.then(r => r.json())
+					.then(datosempl => creaTablaEmpl(datosempl));
+			}
+
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Gestión de Departamentos y Empleados</h1>
+
+    <button class="btn" id="btNuevoDepto" type="button">Nuevo Departamento</button>
+    <div id="departamentos">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="detalle_departamentos"></tbody>
+        </table>
+    </div>
+
+    <div id="formDeptos" class="formProfes">
+        <fieldset>
+            <legend>Nuevo Departamento</legend>
+            <div><label for="nombreDepto">Nombre:</label><input type="text" id="nombreDepto"></div>
+            <div><label for="descripcion">Descripción:</label><textarea id="descripcion"></textarea></div>
+            <div class="btn">
+                <button id="btAnadeDepto" type="button">Añadir</button>
+                <button id="btCancelarDepto" type="button">Cancelar</button>
+            </div>
+        </fieldset>
+    </div>
+
+    <hr>
+
+    <h2>Empleados del Departamento: <span id="deptoDelProfe"></span></h2>
+    <button class="btn" id="btNuevaProfe" type="button">Nuevo Empleado</button>
+    <div id="profesores">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Eliminar</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody id="detalle_profesores"></tbody>
+        </table>
+    </div>
+
+    <div id="formProfes" class="formProfes">
+        <fieldset>
+            <legend>Alta/Modificación de Empleado</legend>
+            <div><label for="dni">DNI:</label><input type="text" id="dni" maxlength="9"></div>
+            <div><label for="nombre">Nombre:</label><input type="text" id="nombre"></div>
+            <div><label for="apellidos">Apellidos:</label><input type="text" id="apellidos"></div>
+            <div class="btn">
+                <button id="btAnade" type="button" data-idempl="-1">Añadir</button>
+                <button id="btCancelar" type="button">Cancelar</button>
+            </div>
+        </fieldset>
+    </div>
+
+</body>
+
+</html>

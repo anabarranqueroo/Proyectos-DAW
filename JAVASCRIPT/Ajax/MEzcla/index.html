@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Empleados por Departamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 1em;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-bottom: 1em;
+        }
+
+        th,
+        td {
+            border: 1px solid #999;
+            padding: 0.5em;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .formProfes {
+            visibility: hidden;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            z-index: 11;
+            background-color: #ffe0e0;
+            border: 2px solid maroon;
+            border-radius: 10px;
+            padding: 1em;
+            color: maroon;
+        }
+
+        .formProfes div label {
+            display: block;
+            margin-top: 0.5em;
+        }
+
+        .formProfes .btn {
+            margin-top: 1em;
+        }
+
+        .ver {
+            visibility: visible;
+        }
+
+        .btn {
+            padding: 0.3em 0.6em;
+            cursor: pointer;
+            margin: 0.3em 0;
+        }
+
+        #deptoDelProfe {
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+    <script>
+        var url = "servicio.php";
+        var idDeptAct = null;
+
+        window.onload = function () {
+            cargaSelectDeptos();
+            document.getElementById("btCargarDatos").onclick = cargaEmpleadosSeleccionado;
+            document.getElementById("btNuevaProfe").onclick = mostrarFormEmpl;
+            document.getElementById("btCancelar").onclick = cancelarFormEmpl; 
+            document.getElementById("btAnade").onclick = anadirEmpl;
+        }
+
+        // ------------------- DEPARTAMENTOS -------------------
+        function cargaSelectDeptos() {
+            fetch(url, { method: 'POST', body: JSON.stringify({ servicio: "departamentos" }) })
+                .then(r => r.json())
+                .then(datos => {
+                    var select = document.getElementById("selectDeptos");
+                    select.innerHTML = "<option value=''>--Selecciona departamento--</option>";
+                    for (var i = 0; i < datos.length; i++) {
+                        var opt = document.createElement("option");
+                        opt.value = datos[i].id;
+                        opt.textContent = datos[i].nombre;
+                        select.appendChild(opt);
+                    }
+
+                    // Al cambiar, solo actualizamos las variables y el nombre
+                    select.onchange = function () {
+                        idDeptAct = this.value;
+                        document.getElementById("detalle_profesores").innerHTML = "";
+                    }
+
+                    // Cargar automáticamente el primer departamento si existe, pero NO la tabla de empleados
+                    if (datos.length > 0) {
+                        select.selectedIndex = 1; // selecciona el primer departamento real
+                        idDeptAct = select.value;
+                    } else {
+                        document.getElementById("deptoDelProfe").textContent = "No hay departamentos disponibles";
+                    }
+                });
+        }
+
+        // ------------------- FUNCIÓN PARA CARGAR EMPLEADOS AL PULSAR BOTÓN -------------------
+        function cargaEmpleadosSeleccionado() {
+            if (!idDeptAct || idDeptAct == '') {
+                alert("Selecciona primero un departamento para cargar los datos.");
+                document.getElementById("detalle_profesores").innerHTML = "";
+                return;
+            }
+
+            // Aquí se realiza la llamada al servicio para obtener los empleados
+            fetch(url, { method: 'POST', body: JSON.stringify({ servicio: "empleados", id_departamento: idDeptAct }) })
+                .then(r => r.json())
+                .then(datos => creaTablaEmpl(datos))
+                .catch(error => console.error('Error al cargar empleados:', error));
+        }
+
+        // ------------------- EMPLEADOS -------------------
+        function CreaFilaEmpl(aCol) {
+            var fila = document.createElement("tr");
+            for (var i = 0; i < aCol.length; i++) {
+                var td = document.createElement("td");
+                td.textContent = aCol[i];
+                fila.appendChild(td);
+            }
+            return fila;
+        }
+
+        function creaTablaEmpl(datos) {
+            var tbody = document.getElementById("detalle_profesores");
+            tbody.innerHTML = "";
+            for (var i = 0; i < datos.length; i++) {
+                var fila = CreaFilaEmpl([datos[i].id, datos[i].dni, datos[i].nombre, datos[i].apellidos]);
+
+                // Botón Eliminar
+                var tdDel = document.createElement("td");
+                var btnDel = document.createElement("button");
+                btnDel.textContent = "Eliminar";
+                btnDel.dataset.idempl = datos[i].id;
+                btnDel.dataset.nombreape = datos[i].nombre + " " + datos[i].apellidos;
+                btnDel.onclick = eliminarEmpl;
+                tdDel.appendChild(btnDel);
+
+                // Botón Editar
+                var tdEd = document.createElement("td");
+                var btnEd = document.createElement("button");
+                btnEd.textContent = "Editar";
+                btnEd.dataset.idempl = datos[i].id;
+                btnEd.dataset.nombreape = datos[i].nombre + " " + datos[i].apellidos;
+                btnEd.onclick = editarEmpl;
+                tdEd.appendChild(btnEd);
+
+                fila.appendChild(tdDel);
+                fila.appendChild(tdEd);
+                tbody.appendChild(fila);
+            }
+        }
+
+        // ------------------- FORMULARIO EMPLEADOS -------------------
+        function mostrarFormEmpl() {
+            if (!idDeptAct || idDeptAct == '') { alert("Selecciona primero un departamento"); return; }
+            document.getElementById("formProfes").classList.add("ver");
+            document.getElementById("dni").value = "";
+            document.getElementById("nombre").value = "";
+            document.getElementById("apellidos").value = "";
+            document.getElementById("btAnade").dataset.idempl = -1;
+            document.getElementById("btAnade").textContent = "Añadir";
+        }
+
+        function cancelarFormEmpl() {
+            document.getElementById("formProfes").classList.remove("ver");
+        }
+
+        function anadirEmpl() {
+            var id = this.dataset.idempl;
+            var dni = document.getElementById("dni").value;
+            var nombre = document.getElementById("nombre").value;
+            var apellidos = document.getElementById("apellidos").value;
+            var servicio = (id == -1) ? "anadeEmpleado" : "modificaEmpleado";
+            var body = { servicio: servicio, id_departamento: idDeptAct, dni: dni, nombre: nombre, apellidos: apellidos };
+            if (id != -1) body.id = id;
+
+            fetch(url, { method: 'POST', body: JSON.stringify(body) })
+                // Al añadir, el PHP devuelve la lista actualizada. Por eso funciona
+                .then(r => r.json())
+                .then(datos => { cancelarFormEmpl(); creaTablaEmpl(datos); });
+        }
+
+        function editarEmpl() {
+            fetch(url, { method: 'POST', body: JSON.stringify({ servicio: "selEmpleadoID", id_departamento: idDeptAct, id: this.dataset.idempl }) })
+                .then(r => r.json())
+                .then(d => {
+                    document.getElementById("dni").value = d.dni;
+                    document.getElementById("nombre").value = d.nombre;
+                    document.getElementById("apellidos").value = d.apellidos;
+                    document.getElementById("btAnade").dataset.idempl = d.id;
+                    document.getElementById("btAnade").textContent = "Modificar";
+                    document.getElementById("formProfes").classList.add("ver");
+                });
+        }
+
+        function eliminarEmpl() {
+            if (confirm("¿Desea borrar a " + this.dataset.nombreape + "?")) {
+                fetch(url, { method: 'POST', body: JSON.stringify({ servicio: "eliminaEmpleado", id_departamento: idDeptAct, id: this.dataset.idempl }) })
+                    // Al eliminar, el PHP devuelve la lista actualizada. Por eso funciona
+                    .then(r => r.json())
+                    .then(datos => creaTablaEmpl(datos));
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Empleados por Departamento: </h1>
+
+    <label for="selectDeptos">Departamento:</label>
+    <select id="selectDeptos"></select>
+    <button class="btn" id="btCargarDatos" type="button">Cargar Datos</button>
+    <button class="btn" id="btNuevaProfe" type="button">Nuevo Empleado</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Eliminar</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody id="detalle_profesores"></tbody>
+    </table>
+
+    <div id="formProfes" class="formProfes">
+        <fieldset>
+            <legend>Alta/Modificación de Empleado</legend>
+            <div><label for="dni">DNI:</label><input type="text" id="dni" maxlength="9"></div>
+            <div><label for="nombre">Nombre:</label><input type="text" id="nombre"></div>
+            <div><label for="apellidos">Apellidos:</label><input type="text" id="apellidos"></div>
+            <div class="btn">
+                <button id="btAnade" type="button" data-idempl="-1">Añadir</button>
+                <button id="btCancelar" type="button">Cancelar</button>
+            </div>
+        </fieldset>
+    </div>
+</body>
+
+</html>
