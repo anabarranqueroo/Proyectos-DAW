@@ -1,0 +1,48 @@
+/* Tabla general */
+table {
+  width: 60%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Encabezados */
+th {
+  background: #dfe8ff;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 2px solid #b7c8f7;
+  color: #243a73;
+}
+
+/* Celdas */
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Colores en hover de filas */
+tr:hover {
+  background-color: #f7faff;
+}
+
+
+/* Inputs */
+form input[type="text"], 
+form input[type="number"], 
+form input[type="date"] {
+  padding: 7px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+/* Etiquetas */
+b {
+  color: #333;
+  font-weight: 600;
+}
