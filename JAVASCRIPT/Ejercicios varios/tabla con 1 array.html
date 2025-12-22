@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Ejercicio. CREAR TABLAS Y ARRAYS</title>
+
+	<style>
+		.claseInput {
+			width: 3em;
+			margin: 0 .5em .5em 0;
+		}
+
+		#salMatriz {
+			margin-left: 1em;
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.onload = function () {
+			document.getElementById("btGenMatriz").onclick = generaMatriz;
+			document.getElementById("btLlenarMatriz").onclick = llenaMatriz;
+			document.getElementById("btGenTabla").onclick = generaTabla;
+		}
+
+		function generaMatriz() {
+			var numFilas = parseInt(document.getElementById("nfilas").value);
+			var numColumnas = parseInt(document.getElementById("ncolumnas").value);
+			var matriz = document.getElementById("salMatriz");
+			matriz.innerHTML = "";
+
+			for (i = 0; i < numFilas; i++) {
+				var fila = document.createElement("div");
+				for (j = 0; j < numColumnas; j++) {
+					var input = document.createElement("input");
+					input.className = "claseInput";
+					input.type = "number";
+					fila.appendChild(input);
+				}
+				matriz.appendChild(fila);
+			}
+			document.getElementById("btLlenarMatriz").disabled = false;
+
+		}
+
+		var array = new Array();
+
+		function llenaMatriz() {
+			var numFilas = parseInt(document.getElementById("nfilas").value);
+			var numColumnas = parseInt(document.getElementById("ncolumnas").value);
+			var input = document.getElementsByClassName("claseInput");
+
+			array = [];
+			var index=0;
+			
+			for (i = 0; i < input.length; i++) {
+				array.push(input[i].value = Math.floor(Math.random() * 1000));
+			}
+			console.log(array);
+			document.getElementById("btGenTabla").disabled = false;
+		}
+
+		function generaTabla() {
+			var filas = parseInt(document.getElementById("nfilas").value);
+			var columnas = parseInt(document.getElementById("ncolumnas").value);
+			var cont = document.getElementById("tabla");
+			cont.innerHTML = "";
+			var tabla = document.createElement("table");
+			tabla.border = "2";
+			tabla.style.borderCollapse = "collapse";
+			var tbody = document.createElement("tbody");
+
+			for (i = 0; i < filas; i++) {
+				var f = document.createElement("tr");
+				for (j = 0; j < columnas; j++) {
+					var c = document.createElement("td");
+					var index = i * columnas +j;
+
+					if (array[index] > document.getElementById("nfiltroI").value) {
+						c.textContent = array[index];
+					}
+					f.appendChild(c);
+				}
+				tbody.appendChild(f);
+			}
+			tabla.appendChild(tbody);
+			cont.appendChild(tabla);
+		}
+
+
+
+
+
+	</script>
+
+</head>
+
+<body>
+	<br>
+	<h2>Ejercicio Tablas y Arrays</h2>
+	<h3>Introducir el código javascript necesario, para que al pulsar sobre
+		el botón, se cree un array (matriz) de inputs (elementos DOM) con un número fijo de filas y columnas. </h3>
+
+	<br />
+	<form>
+		<p>
+			<label for="nfilas">Introduce el número de filas:</label>
+			<input type="number" id="nfilas" value="15" min="1" max="100" style="width: 3em" />
+			<br />
+			<label for="ncolumnas">Introduce el número de columnas:</label>
+			<input type="number" id="ncolumnas" value="8" min="1" max="100" style="width: 3em" />
+		</p>
+		<p>
+			<button type="button" id="btGenMatriz">
+				Generar Matriz de Inputs
+			</button>
+			<button type="button" id="btLlenarMatriz" disabled>
+				Llenar Matriz de Inputs
+			</button>
+			<button type="button" id="btGenTabla" disabled>
+				Generar tabla
+			</button>
+		</p>
+	</form>
+	<br>
+
+	<div id="salMatriz">
+		(Aquí se colocará la matriz de inputs)
+	</div>
+
+	<h3>
+		Filtro de tabla:
+	</h3>
+
+	<p>
+		Mostrar solo números >
+		<input type="number" id="nfiltroI" value="500" min="1" max="1000" style="width: 4em" />
+	</p>
+
+	<div id="tabla">
+		(Aquí se colocará la tabla que se cree dinámicamente con javascript.)
+	</div>
+
+</body>
+
+</html>

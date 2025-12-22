@@ -1,0 +1,30 @@
+.div_central{
+    background-color: rgb(133, 236, 236);
+    border: 3px solid rgb(148, 138, 138);
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+    
+
+}
+
+.div_central h2{
+    color: blue;
+    text-align: center;
+}
+
+.div_central p span{
+    color: brown;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 150%;
+}
+
+body{
+    background-color: rgb(86, 184, 223);
+    background-image: url(../images/parabola_1.jpg);
+    background-repeat: no-repeat;
+    background-position: 0.5em 1em;
+    margin-left: 350px;
+}

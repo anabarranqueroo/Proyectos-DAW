@@ -1,0 +1,28 @@
+ul {
+    display: table;
+    border-collapse: collapse;
+    padding: 0;
+}
+li a {
+    display: block;
+    border: 1px solid #000;
+    padding: 10px 50px;
+    text-decoration: none;
+    color: #000;
+    background-image: url(../images/flecha_inactiva.png);
+    background-repeat: no-repeat;
+    background-position: 20%  50%;
+}
+
+li a:hover {
+    display: table-cell;
+    border: 1px solid #000;
+    padding: 10px 50px;
+    text-decoration: none;
+    color: #000;
+    background-image: url(../images/flecha_activa.png);
+    background-repeat: no-repeat;
+    background-position: 20%  50%;
+    background-color: #E4E4E4;
+}
+

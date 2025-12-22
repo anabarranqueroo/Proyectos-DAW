@@ -1,0 +1,18 @@
+<h2>Ejercicio 1 - Cambiar varios párrafos</h2>
+<p>Texto 1</p>
+<p>Texto 2</p>
+<p>Texto 3</p>
+<button id="cambiar">Cambiar todos</button>
+
+<script>
+    window.onload = function () {
+        document.getElementById("cambiar").onclick = cambiaP;
+    }
+    function cambiaP() {
+        var parrafos = document.querySelectorAll("p");
+        for (let i = 0; i < parrafos.length; i++) {
+            parrafos[i].textContent = "Texto cambiado.";
+        }
+
+    }
+</script>

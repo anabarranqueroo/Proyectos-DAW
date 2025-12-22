@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso 6 - Mostrar/Ocultar</title>
+</head>
+
+<body>
+    <h2>Repaso 6 - Mostrar y ocultar texto</h2>
+    <p id="texto">Este texto puede ocultarse o mostrarse.</p>
+    <button id="toggle">Ocultar texto</button>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("toggle").onclick = texto;
+        }
+        function texto(){
+            var texto = document.getElementById("texto");
+            var btn = document.getElementById("toggle");
+            if(texto.style.display == "none"){
+                texto.style.display = "block";
+                btn.textContent = "Ocultar texto";
+            }else{
+                texto.style.display = "none";
+                btn.textContent = "Mostrar texto";
+            }
+        }
+    </script>
+</body>
+
+</html>

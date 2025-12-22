@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Libreria</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Gestor de recetas de cocina.</h1>
+        <form action="RecetarioServlet" method="post">
+            <label>Nombre: <input type="text" name="nombre"></label><br><br>
+            <label>Chef: <input type="text" name="chef"></label><br><br>
+            <label>Tiempo de preparacion (min): <input type="number" name="tiempo" step="0.01"></label><br><br>
+            <label>Número de ingredientes: <input type="number" name="ingredientes"></label><br><br>
+            <label for="TipoPlato" >Selecciona un tipo de plato: </label>
+            <select id="tipo" name="tipo">
+                <option value="ENTRANTE"> ENTRANTE </option>
+                <option value="PRINCIPAL"> PRINCIPAL </option>
+                <option value="POSTRE"> POSTRE </option>
+                <option value="BEBIDA"> BEBIDA </option>
+                <option value="ENSALADA"> ENSALADA </option>
+            </select>
+            <br><br>
+            <input type="submit" value="Enviar">
+        </form>
+    </body>
+</html>
+

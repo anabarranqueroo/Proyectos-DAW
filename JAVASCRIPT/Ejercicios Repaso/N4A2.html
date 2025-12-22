@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 10 - Contador automático</h2>
+    <p id="contador">0</p>
+    <button id="iniciar">Iniciar</button>
+    <button id="parar">Parar</button>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("iniciar").onclick = inicia;
+            document.getElementById("parar").onclick = detiene;
+        }
+        
+        var intervalo = null;
+
+        function inicia() {
+            if (intervalo === null) {
+                intervalo = setInterval(() => {
+                    var tiempo = document.getElementById("contador");
+                    var contador = parseInt(tiempo.textContent);
+                    contador++;
+                    tiempo.textContent = contador;
+                }, 1000);
+            }
+
+        }
+
+        function detiene() {
+            clearInterval(intervalo);
+            intervalo = null;
+        }
+    </script>
+
+</body>
+
+</html>

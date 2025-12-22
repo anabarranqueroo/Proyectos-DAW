@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso 10 - Seguir ratón</title>
+    <style>
+        #cuadro {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Repaso 10 - Seguir el movimiento del ratón</h2>
+    <div id="cuadro"></div>
+
+    <script>
+        window.onload = function () {
+            var cuadro = document.getElementById("cuadro");
+
+            document.onmousemove = function (evento) {
+                var x = evento.clientX;
+                var y = evento.clientY;
+                cuadro.style.left = x + "px";
+                cuadro.style.top = y + "px";
+            }
+        }
+    </script>
+</body>
+
+</html>

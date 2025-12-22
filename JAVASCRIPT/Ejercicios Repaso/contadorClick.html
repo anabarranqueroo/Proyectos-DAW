@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 19 - Test de clics</title>
+</head>
+
+<body>
+    <h2>Ejercicio 19 - Test de clics</h2>
+    <p id="mensaje">Haz clic lo más rápido que puedas en 5 segundos</p>
+    <p id="contador">Clics: 0</p>
+
+    <script>
+        var cont = 0;
+        var tiempoAct = false;
+        var iniciado = false;
+
+        document.body.onclick = function () {
+            if (!iniciado) {
+                iniciado = true;
+                tiempoAct = true;
+                document.getElementById("mensaje").textContent = "¡Empieza a hacer clics!";
+
+                setTimeout(function () {
+                    tiempoAct = false;
+                    document.getElementById("mensaje").textContent =
+                        "Se ha acabado el tiempo. Hiciste " + cont + " clics.";
+                }, 5000);
+            }
+
+            if (tiempoAct) {
+                cont++;
+                document.getElementById("contador").textContent = "Clics: " + cont;
+            }
+        };
+    </script>
+</body>
+
+</html>

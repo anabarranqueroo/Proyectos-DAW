@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 16 - Convertidor de texto</h2>
+    <textarea id="texto" rows="4" cols="40" placeholder="Escribe algo..."></textarea>
+    <br>
+    <button id="mayus">MAYÚSCULAS</button>
+    <button id="minus">minúsculas</button>
+    <button id="contar">Contar palabras</button>
+    <p id="resultado"></p>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("mayus").onclick = mayusculas;
+            document.getElementById("minus").onclick = minusculas;
+            document.getElementById("contar").onclick = cuentapalabras;
+        }
+        function mayusculas(event) {
+            event.preventDefault();
+            var texto = document.getElementById("texto").value;
+            var res = texto.toUpperCase();
+            var resultado = document.getElementById("resultado");
+            resultado.textContent = res;
+        }
+        function minusculas(event) {
+            event.preventDefault();
+            var texto = document.getElementById("texto").value;
+            var res = texto.toLowerCase();
+            var resultado = document.getElementById("resultado");
+            resultado.textContent = res;
+        }
+        function cuentapalabras(){
+            var texto = document.getElementById("texto").value;
+            var resultado = document.getElementById("resultado");
+            var cont = 0;
+            var palabra = false;
+            for(let i = 0; i < texto.length; i++){
+                var char = texto[i];
+
+                if(char!==' ' && char !== '\n' && char !== '\t'){
+                    if(!palabra){
+                        cont++;
+                        palabra=true;
+                    }
+                }else{
+                    palabra=false;
+                }
+            }
+            resultado.textContent = cont;
+        }
+    </script>
+</body>
+
+</html>

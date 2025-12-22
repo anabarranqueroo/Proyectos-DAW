@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 10 - Exportar tabla</title>
+</head>
+
+<body>
+    <h2>Ejercicio 10 - Exportar tabla</h2>
+    <table id="tabla" border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+        </tr>
+        <tr>
+            <td>Ana</td>
+            <td>23</td>
+        </tr>
+        <tr>
+            <td>Luis</td>
+            <td>27</td>
+        </tr>
+    </table>
+    <button id="exportar">Exportar</button>
+    <pre id="salida"></pre>
+
+    <script>
+        window.onload = function () {
+            var boton = document.getElementById("exportar");
+            var salida = document.getElementById("salida");
+            var tabla = document.getElementById("tabla");
+
+            boton.onclick = function () {
+                var filas = tabla.getElementsByTagName("tr");
+                var texto = "";
+
+                for (var i = 0; i < filas.length; i++) {
+                    var celdas = filas[i].getElementsByTagName("td");
+                    var cabeceras = filas[i].getElementsByTagName("th");
+
+                    if (cabeceras.length > 0) {
+                        for (var j = 0; j < cabeceras.length; j++) {
+                            texto += cabeceras[j].textContent + "\t";
+                        }
+                    } else {
+                        for (var j = 0; j < celdas.length; j++) {
+                            texto += celdas[j].textContent + "\t";
+                        }
+                    }
+                    texto += "\n";
+                }
+
+                salida.textContent = texto;
+            };
+        };
+    </script>
+</body>
+
+</html>

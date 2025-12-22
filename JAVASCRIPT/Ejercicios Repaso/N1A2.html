@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 2 - Contar enlaces</h2>
+    <a href="#">Uno</a>
+    <a href="#">Dos</a>
+    <a href="#">Tres</a>
+    <br><br>
+    <button id="contar">Contar enlaces</button>
+    <p id="resultado"></p>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("contar").onclick = cuentaEnlaces;
+        }
+        function cuentaEnlaces() {
+            var enlaces = document.querySelectorAll("a");
+            var num = enlaces.length;
+            var resultado = document.getElementById("resultado");
+            resultado.textContent = num;
+        }
+    </script>
+</body>
+
+</html>

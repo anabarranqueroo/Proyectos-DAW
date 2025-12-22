@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de configuración de WildFly</title>
+    <link rel="stylesheet" href="css/manuales.css">
+</head>
+
+<body>
+    <header id="Inicio">
+        <nav>
+            <ul>
+                <li><a href="index.html">Página Principal</a></li>
+                <li><a href="tomcat.html">Manual de Apache Tomcat</a></li>
+                <li><a href="glassfish.html">Manual de GlassFish</a></li>
+            </ul>
+        </nav>
+
+        <h1>Manual de Configuración de WildFly</h1>
+        <p>· WildFly ·</p>
+    </header>
+
+    <main>
+        <section>
+            <article>
+                <!-- Información general -->
+                <h3 id="Informacion">¿Qué es WildFly?</h3>
+                <p>WildFly es un servidor de aplicaciones Java EE / Jakarta EE de código abierto desarrollado por Red
+                    Hat.
+                    Es la evolución de JBoss AS, ofreciendo una arquitectura modular y ligera, ideal para ejecutar
+                    aplicaciones empresariales Java modernas.
+                    Es conocido por su alto rendimiento, flexibilidad y soporte de las últimas especificaciones Jakarta
+                    EE.</p>
+
+                <div class="cajas">
+                    <details>
+                        <summary>COMPONENTES</summary>
+                        <p>
+                            - <b>Undertow.</b> Servidor web y contenedor de servlets ligero y de alto rendimiento.<br>
+                            - <b>JBoss Modules.</b> Sistema modular que permite cargar servicios y librerías bajo
+                            demanda.<br>
+                            - <b>Infinispan.</b> Sistema de caché distribuido de alto rendimiento.<br>
+                            - <b>Remoting y EJB.</b> Permiten la comunicación remota y gestión de Enterprise
+                            JavaBeans.<br>
+                            - <b>CLI Management.</b> Consola de administración por línea de comandos.<br>
+                            - <b>Web Admin Console.</b> Interfaz gráfica de administración vía navegador.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>VENTAJAS</summary>
+                        <p>
+                            - Alto rendimiento y escalabilidad.<br>
+                            - Soporte completo para Jakarta EE 10.<br>
+                            - Administración flexible mediante consola web o CLI.<br>
+                            - Arquitectura modular (solo carga lo necesario).<br>
+                            - Compatible con entornos Windows, Linux y macOS.<br>
+                            - Integración con Maven, Eclipse y VS Code.
+                        </p>
+                    </details>
+                </div>
+
+                <b id="versiones" class="versiones">VERSIONES DISPONIBLES:</b>
+                <ul class="versiones">
+                    <li><a href="https://www.wildfly.org/downloads/" target="_blank">Clic aquí.</a> Para ver las
+                        versiones y descargarlas.</li>
+                </ul>
+            </article>
+
+            <article>
+                <!-- Requisitos -->
+                <h3 id="Requisitos">Requisitos previos para su instalación</h3>
+                <details>
+                    <summary>JDK 11 o superior.</summary>
+                    <p>Tener instalado JDK 11 o una versión más reciente. Puedes comprobarlo ejecutando
+                        en la consola:
+                        <i>javac -version</i>.
+                    </p>
+                </details>
+                <details>
+                    <summary>Variables de entorno configuradas.</summary>
+                    <p>Debe estar configurada la variable <i>JAVA_HOME</i> apuntando a la ruta del JDK y añadida en
+                        <i>PATH</i> con <i>%JAVA_HOME%\bin</i>.
+                    </p>
+                </details>
+                <details>
+                    <summary>Sistemas Operativos compatibles.</summary>
+                    <p>Windows 10, Windows 11, Linux, macOS.</p>
+                </details>
+                <details>
+                    <summary>Espacio mínimo en disco.</summary>
+                    <p>300 MB (recomendado 500 MB).</p>
+                </details>
+                <details>
+                    <summary>RAM mínima.</summary>
+                    <p>1 GB (recomendado 2 GB o más).</p>
+                </details>
+            </article>
+
+            <article>
+                <!-- Instalación -->
+                <h3 id="Instalacion">¿Cómo instalamos WildFly en Windows?</h3>
+                <p>Para instalar WildFly, vamos a su página oficial de descargas:
+                    <a href="https://www.wildfly.org/downloads/" target="_blank">https://www.wildfly.org/downloads/</a>,
+                    y descargamos la versión más reciente (archivo ZIP).
+                </p>
+
+                <figure>
+                    <img src="img/enlacesw.png" alt="enlaces" class="imggrande">
+                    <figcaption>Página de descarga.</figcaption>
+                </figure>
+
+                <blockquote>
+                    1. Una vez descargado, descomprimimos el archivo en la carpeta donde queremos instalar WildFly.
+                </blockquote>
+
+                <blockquote>
+                    2. Dentro de la carpeta veremos varias subcarpetas como <i>bin</i>, <i>standalone</i> y <i>domain</i>.
+                    WildFly viene con dos modos de ejecución: <br>
+                    <b>- Standalone mode:</b> Configuración simple, ideal para entornos de desarrollo. <br>
+                    <b>- Domain mode:</b> Permite gestionar múltiples instancias o servidores WildFly al mismo tiempo. <br>
+                </blockquote>
+
+                <blockquote>
+                    3. Para iniciar el servidor en modo standalone, abrimos una terminal en la carpeta <i>bin</i> y escribimos:
+                    <pre>
+                        <code>
+                            ./standalone.bat
+                        </code>
+                    </pre>
+                    En unos segundos, WildFly arrancará escuchando por defecto en el puerto <b>8080</b>. Podemos comprobarlo abriendo:
+                    <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>.
+                </blockquote>
+
+                <figure>
+                    <img src="img/wildflyp.png" alt="pantallaini" class="imggrande">
+                    <figcaption>Pantalla de inicio de WildFly</figcaption>
+                </figure>
+
+                <blockquote>
+                    4. Para detener el servidor, presionamos <b>Ctrl + C</b> en la terminal o ejecutamos:
+                    <pre>
+                        <code>
+                            jboss-cli.bat --connect command=:shutdown
+                        </code>
+                    </pre>
+                </blockquote>
+            </article>
+
+            <article>
+                <!-- Configuración -->
+                <h3 id="Configuracion">¿Cómo se configura WildFly?</h3>
+
+                <blockquote>
+                    1. Para acceder al panel de administración de WildFly, primero debemos crear un usuario administrativo.
+                    En la carpeta <i>bin</i>, ejecutamos:
+                    <pre>
+                        <code>
+                            add-user.bat
+                        </code>
+                    </pre>
+                    2. El asistente nos preguntará: <br>
+                        - Tipo de usuario: seleccionamos <b>Management User</b>. <br>
+                        - Nombre de usuario y contraseña. <br>
+                        - Confirmamos las opciones y finalizamos. <br><br>
+                    3. Una vez creado el usuario, accedemos al panel de administración desde:
+                    <a href="http://localhost:9990" target="_blank">http://localhost:9990</a> e iniciamos sesión con las credenciales creadas.
+                </blockquote>
+
+                <figure>
+                    <img src="img/loginwildfly.png" alt="login">
+                    <figcaption>Inicio de sesión.</figcaption>
+                </figure>
+
+                <blockquote>
+                    4. Desde el panel podemos gestionar despliegues, configuraciones, módulos y recursos del servidor.
+                </blockquote>
+
+                <figure>
+                    <img src="img/administracion.png" alt="administracion" class="imggrande">
+                    <figcaption>Panel de control.</figcaption>
+                </figure>
+
+                <blockquote>
+                    5. Si queremos cambiar el puerto HTTP o HTTPS, modificamos el archivo <i>standalone.xml</i> ubicado
+                    en <i>standalone/configuration</i>:
+                    <pre>
+                        <code>
+                            &lt;socket-binding name="http" port="8080"/&gt;
+                            &lt;socket-binding name="https" port="8443"/&gt;
+                        </code>
+                    </pre>
+                    Cambiamos los valores de <i>port</i> según nuestras necesidades y guardamos el archivo. Luego reiniciamos el servidor.
+                </blockquote>
+            </article>
+
+            <article>
+                <!-- Despliegue -->
+                <h3 id="Despliegue">¿Cómo desplegamos una aplicación web en WildFly?</h3>
+
+                <blockquote>
+                    1. Podemos desplegar aplicaciones <i>.war</i> o <i>.ear</i> en WildFly de dos formas:
+                </blockquote>
+
+                <details>
+                    <summary>Desde la consola web</summary>
+                    <p>Accedemos al panel de administración (<a href="http://localhost:9990" target="_blank">http://localhost:9990</a>),
+                        seleccionamos <b>Deployments</b> → <b>Add</b> → <b>Upload Deployment</b> y elegimos el archivo <i>.war</i>.
+                    </p>
+                    <figure>
+                        <img src="img/upload.png" alt="upload">
+                        <figcaption>Despliegue por consola web</figcaption>
+                    </figure>
+                </details>
+
+                <details>
+                    <summary>Desde la línea de comandos</summary>
+                    <p>En la carpeta <i>bin</i>, ejecutamos el CLI con:</p>
+                    <pre>
+                        <code>
+                            jboss-cli.bat --connect deploy C:\ruta\miAplicacion.war
+                        </code>
+                    </pre>
+                    <p>Para detener o eliminar el despliegue:</p>
+                    <pre>
+                        <code>
+                            undeploy miAplicacion.war
+                        </code>
+                    </pre>
+                </details>
+
+                <blockquote>
+                    2. Luego accedemos a la aplicación desde el navegador, por ejemplo:
+                    <a href="http://localhost:8080/miAplicacion" target="_blank">http://localhost:8080/miAplicacion</a>.
+                </blockquote>
+            </article>
+
+        </section>
+
+        <aside>
+            <p>Enlaces de navegación</p>
+            <a href="#Informacion">¿Qué es WildFly?</a><br>
+            <a href="#Requisitos">Requisitos previos para su instalación</a><br>
+            <a href="#Instalacion">¿Cómo instalamos WildFly en Windows?</a><br>
+            <a href="#Configuracion">¿Cómo se configura WildFly?</a><br>
+            <a href="#Despliegue">¿Cómo desplegamos una aplicación web en WildFly?</a><br>
+        </aside>
+        <a href="#Inicio" class="boton">Volver arriba</a>
+        <div class="botones_manuales">
+            <a href="glassfish.html" class="boton_anterior">Anterior: Manual de GlassFish</a>
+            <a href="index.html" class="boton_siguiente">Volver al inicio</a>
+        </div>
+    </main>
+
+    <footer>
+        <p> &copy; Manual de Configuración de Servidores Java EE · Diseño de Interfaces Web · 2025</p>
+    </footer>
+</body>
+
+</html>

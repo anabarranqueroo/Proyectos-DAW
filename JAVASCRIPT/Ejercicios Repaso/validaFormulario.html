@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 10 - Validación básica</title>
+</head>
+<body>
+  <h2>Ejercicio 10 - Validación de formulario</h2>
+  <form id="formulario">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre"><br><br>
+    <label for="email">Correo:</label>
+    <input type="text" id="email" name="email"><br><br>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="resultado" style="margin-top:20px; font-weight:bold;"></div>
+
+  <script>
+    window.onload = function(){
+        document.getElementById("formulario").onsubmit = validar;
+    }
+
+    function validar(){
+        var valido = true;
+
+        var nombre = document.getElementById("nombre").value;
+        var correo = document.getElementById("email").value;
+
+        if(nombre.length < 1){
+            alert("El campo nombre debe de estar escrito.");
+            valido = false;
+        }
+        if(correo.length < 1){
+            alert("El campo correo debe de estar escrito.");
+            valido = false;
+        }else if(!correo.includes("@") || !correo.includes(".")){
+            alert("El correo debe de tener una @ y un punto");
+            valido = false;
+        }
+
+        if(valido){
+            var resultado = document.getElementById("resultado");
+            resultado.innerHTML = "Nombre: "+nombre+", correo electronico: "+correo;
+            document.getElementById("nombre").value = "";
+            document.getElementById("email").value = "";
+        }
+
+        return valido; //return false; Para poder ver el resultado del div. 
+
+    }
+
+  </script>
+</body>
+</html>

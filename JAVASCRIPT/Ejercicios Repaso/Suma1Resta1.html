@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso 3 - Contador manual</title>
+</head>
+
+<body>
+    <h2>Repaso 3 - Contador manual</h2>
+    <div id="contador">0</div>
+    <button id="sumar">+</button>
+    <button id="restar">-</button>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("sumar").onclick = sumar;
+            document.getElementById("restar").onclick = restar;
+        }
+        function sumar(){
+            var cont = document.getElementById("contador");
+            var valor = parseInt(cont.textContent);
+            var res = valor + 1;
+            cont.textContent = res;
+        }
+
+        function restar(){
+            var cont = document.getElementById("contador");
+            var valor = parseInt(cont.textContent);
+            var res = valor -1;
+            cont.textContent = res;
+        }
+    </script>
+</body>
+
+</html>

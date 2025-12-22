@@ -1,0 +1,144 @@
+fieldset{
+    background-color: #E5FFBD ;
+    margin-bottom: 20px;
+}
+
+fieldset:hover{
+    background-color: #FFCD72;
+}
+
+h1{
+    color: #FF6766;
+    text-align: center;
+}
+
+fieldset legend{
+    padding: 5px;
+    border: 1px solid black;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 10px;
+    background-color: #E5FFBD; 
+    font-size: 1.5em;
+}
+
+fieldset:hover legend {
+    background-color: #FFCD72;
+} 
+
+label[for="cc"] + input[type="text"]{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 150px;
+    border-color: black;
+    outline: none;
+    background: transparent;
+    font-size: 1em;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 5px;
+}
+
+input[type="text"]{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 40px;
+    border-color: black;
+    outline: none;
+    background: transparent;
+    font-size: 1em;
+}
+
+#nombre{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 150px;
+    border-color: black;
+    outline: none;
+    background: transparent;
+}
+
+form > fieldset:first-of-type input[type="text"] {
+  font-size: 1em; 
+}
+
+
+#apellidos{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    width: 280px;
+    border-color: black;
+    outline: none;
+    background: transparent;
+}
+
+#dni{
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    width: 150px;
+    border-color: black;
+    outline: none;
+    background: transparent;
+}
+
+label[for="dni"] {
+    padding-left: 50px;
+}
+
+form > div:first-of-type {
+    color: #FFCD72;
+    margin-bottom: 15px;
+}
+
+
+input[type="reset"], input[type="submit"] {
+    background-color: #FF6766;
+    border-radius: 5px;
+    border-color: #FF6766;
+    padding: 8px;
+    margin-left: 200px;
+    color: #773333;
+    font-weight: bold;
+}
+li{
+    list-style: none;
+}
+
+input[type="radio"]:checked + label{
+    font-weight: bold;
+}
+
+input[type="checkbox"]:checked + label{
+    font-weight: bold;
+}
+
+form>fieldset:nth-of-type(2)>div{
+    margin-bottom: 10px;
+}
+
+form > fieldset:nth-of-type(3) ul > div{
+    margin-top: 10px;
+}
+
+select{
+    background-color: #E5FFBD;
+    border-radius: 10px;
+}

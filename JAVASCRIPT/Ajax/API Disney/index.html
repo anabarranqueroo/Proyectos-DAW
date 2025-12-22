@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Trabajo API</title>
+    <style type="text/css">
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f6f0;
+            color: #333;
+            display: flex;
+            /*Organiza el contenido*/
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h3 {
+            color: #000000;
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+
+        .tabla {
+            width: 80%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            /*Corta el contenido que se sale de los bordes.*/
+        }
+
+        .tabla th {
+            background-color: #fff194;
+            color: rgb(186, 133, 0);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .tabla td {
+            padding: 10px;
+            border-bottom: 2px solid #fce89e;
+        }
+
+        .tabla tr:hover {
+            background-color: #fff3e5;
+        }
+
+        .tabla a {
+            color: #e2b24a;
+            text-decoration: none;
+        }
+
+        .tabla a:hover {
+            font-weight: bold;
+        }
+
+        .botones {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            /*Espacio entre los botones*/
+        }
+
+        button {
+            background-color: #ffe449;
+            color: rgb(87, 73, 22);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+
+        button:disabled {
+            background-color: #f6f7a1;
+            cursor: default;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #c6b354;
+        }
+
+        #datosPersonaje {
+            margin-top: 30px;
+            width: 50%;
+            background-color: #fff;
+            padding: 15px 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: #444;
+        }
+
+        #datosPersonaje img {
+            margin-top: 10px;
+            max-height: 150px;
+            border-radius: 5px;
+        }
+
+        caption {
+            padding-bottom: 10px;
+            color: #f2d64d;
+            font-weight: bold;
+        }
+
+        /*Para las celdas vacías una vez hayan cargado los datos*/
+        td:empty::after { 
+            content: "Campo vacío";
+            color: #d1d0d0;
+        }
+
+    </style>
+    <script type="text/javascript" src="Espera.js"> </script>
+    <script type="text/javascript">
+        let url = "https://api.disneyapi.dev/character"; //Enlace de la API.
+        let resPersonajes = null;
+        var espera;
+
+        window.onload = function () {
+            espera = new Espera();
+            cargaPersonajes();
+            document.getElementById("anterior").onclick = anterior;
+            document.getElementById("siguiente").onclick = siguiente;
+        }
+
+        //Función que crea la tabla.
+        function CreaFila(aCol, tipo) {
+            if (tipo == "cabecera") {
+                tipo = "th";
+            } else
+                tipo = "td";
+            var fila = document.createElement("tr");
+            var col;
+            for (var i = 0; i < aCol.length; i++) {
+                col = document.createElement(tipo);
+                col.innerHTML = aCol[i];
+                fila.appendChild(col);
+            }
+            return fila;
+        }
+        function creaTabla(personajes) {
+            var tabla = document.getElementById("cuerpoPersonajes");
+            var link;
+            var datospintar = personajes.map(function (d) {
+                link = '<a href="https://api.disneyapi.dev/character/' + d._id + '">Ver más</a>';
+                return [d.name, d.films, d.tvShows, d.videoGames, link];
+            });
+
+            console.log(datospintar);
+
+            tabla.innerHTML = "";
+            datospintar.forEach(function (d) {
+                tabla.appendChild(CreaFila(d));
+            });
+        }
+
+        //Carga todos los personajes.
+        function cargaPersonajes() {
+            espera.mostrarEspera();
+
+            fetch(url)
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (res) {
+                    resPersonajes = res;
+                    console.log('Respuesta completa: ', res);
+                    llenaPersonajes(res);
+                });
+        }
+
+
+        function llenaPersonajes(personajes) {
+            let datos = personajes.data;
+            console.log(datos); //En .data se encuentran los resultados de todos los datos.
+
+            //Habilita y deshabilita botones de navegación entre páginas.
+            if (personajes.info.previousPage === null) {
+                document.getElementById("anterior").disabled = true;
+            } else {
+                document.getElementById("anterior").disabled = false;
+            }
+
+            if (personajes.info.nextPage === null) {
+                document.getElementById("siguiente").disabled = true;
+            } else {
+                document.getElementById("siguiente").disabled = false;
+            }
+
+            //Crea la tabla usando la funcion.
+            creaTabla(datos);
+            //Muestra la informacion del enlace sin navegar a la pagina del propio enlace.
+            var enlaces = document.querySelectorAll("#cuerpoPersonajes a");
+            enlaces.forEach(function (a) {
+                a.onclick = cargaDetalles;
+            });
+            espera.ocultarEspera();
+        }
+
+        //Carga los detalles de los personajes.
+        function cargaDetalles() {
+            espera.mostrarEspera();
+            console.log("Aqui cargo todos los datos de cada personaje.");
+            let url = this.href;
+            console.log(url);
+
+            fetch(url)
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (res) {
+                    console.log('respuesta', res);
+                    llenaDetalles(res.data);
+                });
+
+            return false;
+        }
+
+        //Escribe los detalles de cada personaje.
+        function llenaDetalles(detalles) {
+            console.log(detalles);
+
+            var inf = document.getElementById("datosPersonaje");
+
+            inf.innerHTML =
+                "<b>Datos del Personaje:</b><br><br>" +
+                "<b>Nombre:</b> " + detalles.name + "<br>" +
+                "<b>Id:</b> " + detalles._id + "<br>" +
+                "<b>Imagen:</b><br><br><img src='" + detalles.imageUrl + "' alt='" + detalles.name + "' height='150'>";
+
+                espera.ocultarEspera();
+        }
+
+        //Pasa a la página anterior si .previousPage tiene enlace.
+        function anterior() {
+            let datos = resPersonajes;
+
+            if (datos.info.previousPage != null) {
+                url = datos.info.previousPage;
+                cargaPersonajes();
+            }
+        }
+
+        //Pasa a la página siguiente si .nextPage tiene enlace.
+        function siguiente() {
+            let datos = resPersonajes;
+
+            if (datos.info.nextPage != null) {
+                url = datos.info.nextPage;
+                cargaPersonajes();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h3>EJEMPLO DE LLAMADA A LA API DE DISNEY</h3>
+    <br>
+
+    <p>
+    <table id="personajes" class="tabla">
+        <caption>Personajes de Disney</caption>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Películas en las que participa</th>
+                <th>Series</th>
+                <th>Videojuegos</th>
+                <th>Más detalles</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoPersonajes">
+
+        </tbody>
+    </table>
+    </p>
+
+    <button class="botones" id="anterior">Página Anterior</button>
+    <button class="botones" id="siguiente">Página Siguiente</button>
+    <br>
+    <br>
+
+    <div id="datosPersonaje">Datos del personaje:</div>
+</body>
+
+</html>

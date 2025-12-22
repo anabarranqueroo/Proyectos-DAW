@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 20 - Agenda simple</h2>
+    <input type="text" id="nombre" placeholder="Nombre">
+    <button id="agregar">Agregar</button>
+    <ul id="lista"></ul>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("agregar").onclick = agenda;
+        }
+        function agenda(event){
+            event.preventDefault();
+            var nombre = document.getElementById("nombre").value;
+            var lista = document.getElementById("lista");
+            var li = document.createElement("li");
+            li.textContent = nombre;
+            var boton = document.createElement("button");
+            boton.textContent = " Borrar elemento";
+            li.appendChild(boton);
+            lista.appendChild(li);
+                boton.onclick = function(){
+                    li.remove();
+                }
+        }
+    </script>
+
+</body>
+
+</html>

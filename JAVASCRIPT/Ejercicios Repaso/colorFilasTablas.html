@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 9 - Colores alternos</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            padding: 8px;
+            border: 1px solid #444;
+        }
+
+        .par {
+            background-color: #f2f2f2;
+        }
+
+        .impar {
+            background-color: #d9edf7;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Ejercicio 9 - Colores alternos</h2>
+    <table id="tabla">
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+        </tr>
+        <tr>
+            <td>Pan</td>
+            <td>1.00</td>
+        </tr>
+        <tr>
+            <td>Leche</td>
+            <td>1.20</td>
+        </tr>
+        <tr>
+            <td>Huevos</td>
+            <td>2.50</td>
+        </tr>
+        <tr>
+            <td>Arroz</td>
+            <td>1.80</td>
+        </tr>
+        <tr>
+            <td>Manzanas</td>
+            <td>2.10</td>
+        </tr>
+    </table>
+
+    <script>
+        window.onload = function () {
+            var tabla = document.getElementById("tabla");
+            var filas = tabla.getElementsByTagName("tr");
+
+            for (var i = 1; i < filas.length; i++) { // saltar encabezado
+                if (i % 2 == 0) {
+                    filas[i].className = "par";
+                } else {
+                    filas[i].className = "impar";
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

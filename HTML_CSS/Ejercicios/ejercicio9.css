@@ -1,0 +1,15 @@
+img{
+    margin: 1em;
+    border: 2px solid black;
+    padding: 5px;
+    background-color: gainsboro;
+}
+div{
+    float: left;
+    width: 30%;
+    margin: 1%;
+    text-align: center;
+    background-color: rgb(110, 199, 169);
+    align-items: center;
+    border: 2px solid black;
+}

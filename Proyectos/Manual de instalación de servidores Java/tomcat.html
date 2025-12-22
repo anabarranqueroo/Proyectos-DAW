@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de configuración de Apache Tomcat</title>
+    <link rel="stylesheet" href="css/manuales.css">
+</head>
+
+<body>
+    <header id="Inicio">
+        <nav>
+            <ul>
+                <li><a href="index.html">Página Principal</a></li>
+                <li><a href="glassfish.html">Manual de GlassFish</a></li>
+                <li><a href="wildfly.html">Manual de WildFly</a></li>
+            </ul>
+        </nav>
+
+        <h1>Manual de Configuración de Apache Tomcat</h1>
+        <p>· Apache Tomcat ·</p>
+    </header>
+
+    <main>
+        <section>
+            <article>
+                <!-- Información general -->
+                <h3 id="Informacion">¿Qué es Apache Tomcat?</h3>
+                <p>Apache Tomcat es un servidor de aplicaciones de código abierto que implementa especificaciones de
+                    servlets y JSP. Proporciona un entorno confiable y eficiente para ejecutar aplicaciones web Java,
+                    permitiendo procesar solicitudes dinámicas y entregar contenido web generado por servlets y JSP.
+                    Tomcat actúa como intermediario entre los clientes y las aplicaciones Java, ofreciendo un entorno
+                    seguro y optimizado para su ejecución.</p>
+
+                <div class="cajas">
+                    <details>
+                        <summary>COMPONENTES</summary>
+                        <p>
+                            - <b>Catalina.</b> Contenedor de servlets responsable de ejecutar las aplicaciones Java.<br>
+                            - <b>Coyote.</b> Conector HTTP que administra las solicitudes web entrantes.<br>
+                            - <b>Jasper.</b> Motor que compila y ejecuta páginas JSP convirtiéndolas en servlets.
+                        </p>
+
+                    </details>
+
+                    <details>
+                        <summary>VENTAJAS</summary>
+                        <p>
+                            - Es gratuito y de código abierto.<br>
+                            - Instalación y configuración sencillas.<br>
+                            - Seguridad configurable e integrada.<br>
+                            - Alta estabilidad y confiabilidad en producción.<br>
+                            - Escalable y personalizable según los requerimientos del proyecto.<br>
+                            - Amplia comunidad de soporte y documentación.
+                        </p>
+
+                    </details>
+                </div>
+
+                <b id="versiones">VERSIONES DISPONIBLES:</b>
+                <ul class="versiones">
+                    <li><a href="https://tomcat.apache.org/download-90.cgi" target="_blank">Tomcat 9.</a> Compatible con
+                        Java EE 8 / Servlet 4.0</li>
+                    <li><a href="https://tomcat.apache.org/download-10.cgi" target="_blank">Tomcat 10.</a> Compatible
+                        con Jakarta EE 9 / Servlet 5.0</li>
+                    <li><a href="https://tomcat.apache.org/download-11.cgi" target="_blank">Tomcat 11.</a> Compatible
+                        con Jakarta EE 10 / Servlet 6.0</li>
+                </ul>
+            </article>
+
+            <article>
+                <!-- Requisitos -->
+                <h3 id="Requisitos">Requisitos previos para su instalación</h3>
+                <details>
+                    <summary>JDK 8 o superior.</summary>
+                    <p>Se debe contar con Java Development Kit (JDK) versión 8 o superior. Verifique la instalación
+                        ejecutando en la consola: <i>javac -version</i>.</p>
+                </details>
+                <details>
+                    <summary>Variables de entorno configuradas.</summary>
+                    <p>Es necesario que las variables de entorno estén correctamente definidas: <i>JAVA_HOME</i> con
+                        la ruta del JDK, <i>CATALINA_HOME</i> con la ruta de instalación de Tomcat y <i>PATH</i>
+                        incluyendo <i>%JAVA_HOME%\bin</i>.</p>
+                </details>
+                <details>
+                    <summary>Sistemas Operativos compatibles.</summary>
+                    <p>Windows 10 (64 bits), Windows 11 (64 bits), Windows Server 2016, 2019 y 2022.</p>
+                </details>
+                <details>
+                    <summary>Espacio mínimo en el disco.</summary>
+                    <p>Se requiere un mínimo de 200 MB de espacio libre en disco para la instalación.</p>
+                </details>
+                <details>
+                    <summary>RAM mínima.</summary>
+                    <p>Se recomienda disponer al menos de 512 MB de memoria RAM para un funcionamiento óptimo.</p>
+                </details>
+            </article>
+
+            <article>
+                <!-- Instalación -->
+                <h3 id="Instalacion">¿Cómo instalamos Apache Tomcat en Windows?</h3>
+                <p>Para instalar Apache Tomcat, acceda a la sección de <a href="#versiones">versiones disponibles</a> y
+                    seleccione la versión deseada o ingrese directamente a la página oficial: <a
+                        href="https://tomcat.apache.org/" target="_blank">https://tomcat.apache.org/</a>.
+                </p>
+
+                <p>En el sitio oficial, seleccione la versión correspondiente y haga clic en el instalador
+                    <span>32-bit/64-bit Windows Service Installer</span>.
+                </p>
+
+                <figure>
+                    <img src="img/enlaces_descarga.png" alt="enlaces">
+                    <figcaption>Ejemplo de la versión 10.1.48</figcaption>
+                </figure>
+
+                <blockquote>
+                    1. Ejecute el instalador, acepte la licencia y siga las instrucciones del asistente de instalación.
+                </blockquote>
+
+                <div class="imagenes-primera">
+                    <figure>
+                        <img src="img/asistente.png" alt="asistente">
+                        <figcaption>Asistente de instalación</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="img/licencia.png" alt="licencia">
+                        <figcaption>Licencia de uso</figcaption>
+                    </figure>
+                </div>
+
+                <blockquote>
+                    2. Seleccione los componentes que desea instalar según las necesidades del entorno.
+                </blockquote>
+
+                <figure>
+                    <img src="img/componentes.png" alt="componentes">
+                    <figcaption>Componentes de instalación</figcaption>
+                </figure>
+
+                <blockquote>
+                    3. Configure el puerto de servicio, así como el usuario y contraseña en el panel de configuración básica.
+                </blockquote>
+
+                <figure>
+                    <img src="img/configuracion.png" alt="configuración">
+                    <figcaption>Panel de configuración básica</figcaption>
+                </figure>
+
+                <blockquote>
+                    4. Indique la ruta de la máquina virtual de Java y la carpeta de instalación de Tomcat.
+                </blockquote>
+
+                <div class="imagenes-primera">
+                    <figure>
+                        <img src="img/rutajava.png" alt="java">
+                        <figcaption>Ruta de la máquina virtual Java</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="img/rutacarpeta.png" alt="carpeta">
+                        <figcaption>Ruta de la carpeta de instalación de Tomcat</figcaption>
+                    </figure>
+                </div>
+
+                <blockquote>
+                    5. Para verificar la instalación, abra en un navegador: <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>.
+                </blockquote>
+
+                <figure>
+                    <img src="img/pantallatomcat.png" alt="pantallatomcat">
+                    <figcaption>Pantalla de inicio de Tomcat</figcaption>
+                </figure>
+            </article>
+
+            <article>
+                <!-- Configuración -->
+                <h3 id="Configuracion">¿Cómo se configura Apache Tomcat?</h3>
+                <p>Para agregar o modificar usuarios, edite el archivo <i>tomcat-users.xml</i> ubicado en la carpeta
+                    <i>conf</i> de Tomcat.
+                </p>
+                <figure>
+                    <img src="img/archivousuariostomcat.png" alt="archivousuariostomcat">
+                    <figcaption>Ubicación del archivo de configuración de usuarios</figcaption>
+                </figure>
+
+                <blockquote>
+                    1. Antes de la etiqueta de cierre <b><i>&lt;/tomcat-users&gt;</i></b>, agregue las siguientes líneas
+                    de configuración:
+                    <pre><code>
+                        &lt;role rolename="manager-gui"/&gt;
+                        &lt;role rolename="admin-gui"/&gt;
+                        &lt;user username="nombre_usuario" password="contraseña_usuario" roles="manager-gui,admin-gui"/&gt;
+                    </code></pre>
+                    2. Guarde los cambios y reinicie Tomcat para que las modificaciones surtan efecto.
+                </blockquote>
+            </article>
+
+            <article>
+                <!-- Despliegue -->
+                <h3 id="Despliegue">¿Cómo desplegamos una aplicación web en Apache Tomcat?</h3>
+                <p>Localice el archivo <i>.war</i> generado por su proyecto en la carpeta <b>dist</b> y cópielo en la
+                    carpeta
+                    <b>webapps</b> de Tomcat. Posteriormente, acceda mediante navegador a
+                    <span>https://localhost:8080/nombre_del_proyecto</span> para verificar su correcto despliegue.
+                </p>
+            </article>
+        </section>
+
+        <aside>
+            <p>Enlaces de navegación</p>
+            <a href="#Informacion">¿Qué es Apache Tomcat?</a><br>
+            <a href="#Requisitos">Requisitos previos para su instalación</a><br>
+            <a href="#Instalacion">¿Cómo instalamos Apache Tomcat en Windows?</a><br>
+            <a href="#Configuracion">¿Cómo se configura Apache Tomcat?</a><br>
+            <a href="#Despliegue">¿Cómo desplegamos una aplicación web en Apache Tomcat?</a><br>
+        </aside>
+        <a href="#Inicio" class="boton">Volver arriba</a>
+        <div class="botones_manuales">
+            <a href="index.html" class="boton_anterior">Volver al inicio</a>
+            <a href="glassfish.html" class="boton_siguiente">Siguiente: Manual de GlassFish</a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p> &copy; Manual de Configuración de Servidores Java EE · Diseño de Interfaces Web · 2025</p>
+    </footer>
+</body>
+
+</html>

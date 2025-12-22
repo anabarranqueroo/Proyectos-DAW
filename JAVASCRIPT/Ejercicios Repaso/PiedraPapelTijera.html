@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 18 - Piedra, Papel o Tijera</h2>
+    <button class="opcion">Piedra</button>
+    <button class="opcion">Papel</button>
+    <button class="opcion">Tijera</button>
+    <p id="resultado"></p>
+
+    <script>
+        window.onload = function(){
+            var opcion = document.getElementsByClassName("opcion");
+            var resultado = document.getElementById("resultado");
+            for(var i =0; i<opcion.length; i++){
+                opcion[i].onclick = function(){
+                    var eleccionUsu = this.textContent;
+                    var opciones = ["Piedra", "Papel", "Tijera"];
+                    var opcionpc = opciones[Math.floor(Math.random()*3)];
+                    var mensaje = "Tu: "+eleccionUsu+ " | Pc: "+opcionpc;
+                    if(eleccionUsu === opcionpc){
+                        mensaje = mensaje + " Empate."; 
+                    }else if(
+                    (eleccionUsu === "Piedra" && opcionpc === "Tijera") ||
+                    (eleccionUsu === "Papel" && opcionpc === "Piedra") ||
+                    (eleccionUsu === "Tijera" && opcionpc === "Papel"))
+                    {
+                        mensaje = mensaje + " ¡Has ganado!";
+                    }else{
+                        mensaje = mensaje + " ¡Has perdido!";
+                    }
+                    resultado.textContent = mensaje;
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

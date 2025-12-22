@@ -1,0 +1,62 @@
+table{
+    text-align: center;
+    border: 1px solid #333;
+    border-collapse: collapse;
+    font-family: Arial;
+    
+}
+table tr:hover{
+    background-color: yellow;
+}
+td{
+    border: 1px solid #333;
+    border-collapse: collapse;
+    padding: 0.90em;
+   
+}
+tr{
+    border: 1px solid #333;
+    border-collapse: collapse;
+    padding: 0.90em;
+}
+th{
+    border: 1px solid #333;
+    border-collapse: collapse;
+    background-image: url(../images/fondo_gris.gif);
+    background-repeat: repeat;
+    padding: 0.90em;
+}
+.Euro{
+    background-color: #E6F3FF;
+    background-image: url(../images/euro.png);
+    background-repeat: no-repeat;
+    background-position: 2%  50%;
+    background-size: 12%;
+}
+.Dolar{
+    background-color: #E6F3FF;
+    background-image: url(../images/dolar.png);
+    background-repeat: no-repeat;
+    background-position: 2%  50%;
+    background-size: 12%;
+}
+.Libra{
+    background-color: #E6F3FF;
+    background-image: url(../images/libra.png);
+    background-repeat: no-repeat;
+    background-position: 2%  50%;
+    background-size: 12%;
+}
+.Yen{
+    background-color: #E6F3FF;
+    background-image: url(../images/yen.png);
+    background-repeat: no-repeat;
+    background-position: 2%  50%;
+    background-size: 12%;
+}
+.amarillo{
+    background-color: #FFFFCC;
+}
+.amarillo:hover{
+    background-color: yellow;
+}

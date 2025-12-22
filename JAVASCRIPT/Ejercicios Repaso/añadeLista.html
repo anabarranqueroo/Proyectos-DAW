@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3 - Crear y eliminar</title>
+</head>
+
+<body>
+    <h2>Ejercicio 3 - Añadir y eliminar elementos</h2>
+    <ul id="lista">
+        <li>Elemento inicial</li>
+    </ul>
+    <button id="añadir">Añadir elemento</button>
+    <button id="eliminar">Eliminar último</button>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("añadir").onclick = añadir;
+            document.getElementById("eliminar").onclick = eliminar;
+        }
+
+        var contador = 0;
+
+        function añadir(){
+            var lista = document.getElementById("lista");
+            var li = document.createElement("li");
+            contador ++;
+            li.textContent = "Elemento "+contador;
+            lista.appendChild(li);
+        }
+
+        function eliminar(){
+            var lista = document.getElementById("lista");
+            if(lista.lastElementChild){
+                lista.removeChild(lista.lastElementChild);
+                contador--;
+            }
+        }
+    </script>
+</body>
+
+</html>

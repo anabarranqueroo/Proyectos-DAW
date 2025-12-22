@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Ejercicio 8 - Área de un rectángulo</h2>
+    <form id="form">
+        <input type="number" id="base" placeholder="Base">
+        <input type="number" id="altura" placeholder="Altura">
+        <button type="submit">Calcular</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("form").onsubmit = area;
+        }
+        function area(event){
+            event.preventDefault();
+            var base = document.getElementById("base").value;
+            var altura = document.getElementById("altura").value;
+            var res = document.getElementById("resultado");
+            res.textContent = "El área del rectangulo es: "+(base*altura);
+        }
+    </script>
+
+</body>
+
+</html>

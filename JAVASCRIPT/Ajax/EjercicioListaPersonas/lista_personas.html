@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Ejercicio Listado Personas. AJAX</title>
+	<style type="text/css">
+		h3 {
+			color: red;
+		}
+
+		/* CSS para el formulario:   */
+		.formPersonas {
+			visibility: hidden;
+			position: absolute;
+			top: 20%;
+			left: 20%;
+			z-index: 11;
+			background-color: pink;
+			border: 2px solid maroon;
+			border-radius: 15px;
+			padding: 1em;
+			color: red;
+
+			/*	opacity:0;   */
+			/*	transition: all 1s;   */
+		}
+
+		.formPersonas div label {
+			display: block;
+			margin-top: .5em;
+		}
+
+		.formPersonas .btn {
+			display: block;
+			margin-top: 1em;
+		}
+
+
+		.ver {
+			visibility: visible;
+			opacity: 1;
+		}
+	</style>
+	<script type="text/javascript">
+
+		var url = "servidor.php";
+
+		window.onload = function () {
+			cargaTabla();
+		}
+
+		function cargaTabla() {
+			var p = {
+				servicio: "listar"
+			}
+
+			var parametros = {
+				method: 'POST', body: JSON.stringify(p)
+			};
+
+			fetch(url, parametros)
+				.then(r => r.json())
+				.then(datos => creaTabla(datos))
+				.then(datos => console.log(datos));
+		}
+
+		//CREA LA TABLA.
+		function CreaFila(aCol, tipo) {
+			if (tipo == "cabecera") {
+				tipo = "th";
+			} else
+				tipo = "td";
+			var fila = document.createElement("tr");
+			var col;
+			for (var i = 0; i < aCol.length; i++) {
+				col = document.createElement(tipo);
+				col.innerHTML = aCol[i];
+				fila.appendChild(col);
+
+			}
+			return fila;
+		}
+		function creaTabla(datos) {
+			var tabla = document.getElementById("filas_tabla");
+			var datospintar = datos.map(function (d) {
+				var btnB = `<button onclick="Borrar(${d.ID}") >Borrar</button>`;
+				var btnE = `<button onclick="Editar(${d.ID}") >Editar</button>`;
+				return [d.ID, d.DNI, d.NOMBRE, d.APELLIDOS, btnB, btnE];
+			});
+
+			console.log(datospintar);
+
+			tabla.innerHTML = ""; 
+			datospintar.forEach(function (d) {
+				tabla.appendChild(CreaFila(d));
+			});
+		}
+
+		function Borrar(){
+
+		}
+
+		function Editar(){
+			
+		}
+
+
+	</script>
+</head>
+
+<body>
+	<h3>Registro de Usuarios</h3>
+
+	<div id="formPersonas" class="formPersonas">
+		<fieldset>
+			<legend>Alta en el servicio</legend>
+			<div>
+				<label for="dni">DNI</label>
+				<input type="text" id="dni" size="10" maxlength="9" value="27473339T" />
+			</div>
+			<div>
+				<label for="nombre">Nombre</label>
+				<input type="text" id="nombre" value="Marco Elio" />
+			</div>
+			<div>
+				<label for="apellidos">Apellidos</label>
+				<input type="text" id="apellidos" size="40" value="García Gomariz" />
+			</div>
+			<div class="btn">
+				<button id="btAnade">Añadir </button>
+				<button id="btCancelar">Cancelar </button>
+			</div>
+		</fieldset>
+	</div>
+
+
+
+	<br />
+	<button class="btn" id="btNuevaPersona">Nueva persona</button>
+	<br><br>
+	<table id="tabla_personas" border="1">
+		<tr>
+			<th>ID</th>
+			<th>DNI</th>
+			<th>NOMBRE</th>
+			<th>APELLIDOS</th>
+			<th>Borrar</th>
+			<th>Editar</th>
+		</tr>
+
+		<tbody id="filas_tabla">
+
+		</tbody>
+	</table>
+
+	<br><br>
+
+</body>
+
+</html>

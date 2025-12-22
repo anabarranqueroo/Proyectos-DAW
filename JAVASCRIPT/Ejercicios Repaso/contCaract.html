@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso 9 - Contador de caracteres</title>
+</head>
+
+<body>
+    <h2>Repaso 9 - Contador de caracteres</h2>
+    <textarea id="texto" maxlength="50"></textarea>
+    <p id="contador">0 / 50</p>
+
+    <script>
+        var maxCar = 50;
+
+
+        window.onload = function () {
+            document.getElementById("texto").onkeypress = limita;
+            document.getElementById("texto").onkeyup = maxCaracteres;
+        }
+
+        function limita() {
+            return (this.value.length < maxCar)
+        }
+
+        function maxCaracteres() {
+            var caracteres = maxCar - this.value.length;
+            document.getElementById("contador").innerHTML = caracteres + "/50";
+        }
+
+    </script>
+</body>
+
+</html>

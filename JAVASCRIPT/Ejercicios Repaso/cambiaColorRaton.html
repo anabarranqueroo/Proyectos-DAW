@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 6 - Evento ratón</title>
+  <style>
+    #caja {
+      width: 150px;
+      height: 150px;
+      background-color: lightblue;
+      margin: 20px;
+      text-align: center;
+      line-height: 150px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ejercicio 6 - Ratón sobre la caja</h2>
+  <div id="caja">Caja</div>
+
+  <script>
+    window.onload = function(){
+        document.getElementById("caja").onmousemove = color;
+        document.getElementById("caja").onmouseout = colororiginal;
+    }
+    function color(){
+        var caja = document.getElementById("caja");
+        caja.style.backgroundColor = "violet";
+    }
+    function colororiginal(){
+        var caja = document.getElementById("caja");
+        caja.style.backgroundColor = "lightblue";
+    }
+  </script>
+</body>
+</html>

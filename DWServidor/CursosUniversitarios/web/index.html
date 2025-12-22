@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cursos Universitarios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Cursos Universitarios</h1>
+        <form action="CursoServlet" method="post">
+            <label>Nombre del curso: <input type="text" name="nombre"></label><br><br>
+            <label>Profesor responsable:  <input type="text" name="profesor"></label><br><br>
+            <label>Duración en horas: <input type="number" name="duracion"></label><br><br>
+            <label>Número de plazas disponibles: <input type="number" name="plazas"></label><br><br>
+            <label for="Modalidad" >Selecciona una modalidad: </label>
+            <select id="modalidad" name="modalidad">
+                <option value="PRESENCIAL"> PRESENCIAL </option>
+                <option value="ONLINE"> ONLINE </option>
+                <option value="SEMIPRESENCIAL"> SEMIPRESENCIAL </option>
+            </select>
+            <br><br>
+            <input type="submit" value="Enviar">
+        </form>
+    </body>
+</html>
+

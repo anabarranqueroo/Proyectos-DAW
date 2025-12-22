@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 7 - Doble clic</title>
+  <style>
+    #cuadro {
+      width: 100px;
+      height: 100px;
+      background-color: salmon;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ejercicio 7 - Doble clic</h2>
+  <div id="cuadro"></div>
+
+  <script>
+    window.onload = function(){
+        document.getElementById("cuadro").ondblclick = tamaño;
+    }
+
+    function tamaño(){
+        var cuadrado = document.getElementById("cuadro");
+        cuadrado.style.width = "200px";
+        cuadrado.style.height = "200px";
+    }
+  </script>
+</body>
+</html>

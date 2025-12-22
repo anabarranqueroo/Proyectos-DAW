@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tablas - Ejercicio 5</title>
+</head>
+
+<body>
+    <h2>Ejercicio 5 - Ordenar por edad</h2>
+    <button id="ordenar">Ordenar por edad</button>
+    <table id="tabla" border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+        </tr>
+        <tr>
+            <td>María</td>
+            <td>34</td>
+        </tr>
+        <tr>
+            <td>Javier</td>
+            <td>19</td>
+        </tr>
+        <tr>
+            <td>Laura</td>
+            <td>27</td>
+        </tr>
+    </table>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("ordenar").onclick = ordenar;
+        }
+
+        function ordenar(){
+            var tabla = document.getElementById("tabla");
+            var filas = Array.prototype.slice.call(tabla.rows, 1);
+            //tabla.rows da todas las filas, slice(1) obtiene un array sin el encabezado de todas las
+            //filas. Array.prototype.slice.call convierte el objeto en un array para usar métodos.
+            filas.sort(function(a, b){
+                var edadA = parseInt(a.cells[1].textContent);
+                var edadB = parseInt(b.cells[1].textContent); 
+                return edadA - edadB; //Orden ascendente.
+            });
+
+            for(var i = filas.length -1; i >=0; i--){
+                tabla.deleteRow(i+1); //+1 porque la fila 0 es la cabecera.
+            }
+
+            for(var i =0; i<filas.length; i++){
+                tabla.appendChild(filas[i]);
+            }
+
+        }
+    </script>
+</body>
+
+</html>

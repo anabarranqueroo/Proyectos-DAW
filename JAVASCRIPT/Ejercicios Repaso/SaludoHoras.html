@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso 2 - Saludo según hora</title>
+</head>
+
+<body>
+    <h2>Repaso 2 - Saludo según hora</h2>
+    <div id="saludo"></div>
+
+    <script>
+        window.onload = function(){
+            saludar();
+        }
+
+        function saludar(){
+            var saludo = document.getElementById("saludo");
+            var fecha = new Date();
+            var horas = fecha.getHours();
+
+            if(horas > 0 && horas < 6){
+                saludo.textContent = "Buenas noches!";
+            }else if(horas > 6 && horas < 12){
+                saludo.textContent = "Buenos dias!";
+            }else if(horas > 12 && horas <20){
+                saludo.textContent = "Buenas tardes!";
+            }else if(horas > 20 && horas < 24){
+                saludo.textContent = "Buenas noches!";
+            }
+        }
+    </script>
+</body>
+
+</html>

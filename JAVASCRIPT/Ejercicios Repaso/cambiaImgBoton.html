@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso 1 - Cambiar imagen</title>
+</head>
+
+<body>
+    <h2>Repaso 1 - Cambiar imagen con JS</h2>
+    <img id="foto" src="tigre.jpg" alt="imagen" width="200">
+    <br><br>
+    <button id="cambiar">Cambiar imagen</button>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("cambiar").onclick = imagen;
+        }
+        function imagen(){
+            var img = document.getElementById("foto");
+            var cambio = false;
+            if(cambio){
+                img.src = "tigre.jpg";
+            }else{
+                img.src = "monalisa.jpg";
+            }
+            cambio = !cambio;
+        }
+    </script>
+</body>
+
+</html>
