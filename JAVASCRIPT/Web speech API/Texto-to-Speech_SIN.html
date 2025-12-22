@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Plantilla</title>
+</head>
+
+<script type="text/javascript">
+	let lista;
+
+	window.onload = function () {
+		document.getElementById("btnHablar").onclick = Hablar;
+
+		lista = document.getElementById("listaVoces");
+		var btnStart = document.getElementById("btnHablar");
+
+		speechSynthesis.addEventListener("voiceschanged", () => {
+			var voces = speechSynthesis.getVoices();
+			var opciones = voces.map((voz, index) => {
+				return `<option value="${index}">${voz.name}</option>`;
+			});
+			lista.innerHTML = opciones.join("");
+		});
+	}
+
+	function Hablar() {
+		var texto = document.getElementById("texto").value;
+		var mensaje = new SpeechSynthesisUtterance(texto);
+		var index = lista.selectedIndex;
+		mensaje.voice = speechSynthesis.getVoices()[index];
+		speechSynthesis.speak(mensaje);
+	}
+
+</script>
+
+<body>
+	<div>
+		<label>Selecciona Voz:</label>
+		<select id='listaVoces'></select>
+	</div>
+	<br><br>
+
+	<div>
+		<textarea id='texto' rows="7" cols="44">Esto es un texto de prueba</textarea>
+	</div>
+
+	<br><br>
+	<button id='btnHablar'>Hablar</button>
+</body>
+
+</html>

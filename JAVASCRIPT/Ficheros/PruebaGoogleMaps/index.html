@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor de Rutas GPX</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Maps API -->
+
+    <script src="app.js"></script>
+
+    <script async
+        src="https://maps.google.com/maps/api/js?loading=async&callback=initMap&key=AIzaSyBkLVi_r1R_D--DoxF9VW98oaBK5QcNFos&libraries=marker,geometry">
+        </script>
+</head>
+
+<body>
+    <h1>Gestor de Rutas GPX</h1>
+
+    <!-- Selector de rutas -->
+    <section>
+        <label for="rutas">Seleccionar ruta:</label>
+        <select id="rutas">
+            <option value="-1">Selecciona una ruta...</option>
+        </select>
+
+        <button id="btnNuevaRuta">Añadir ruta</button>
+        <button id="btnBorrarRuta">Borrar</button>
+    </section>
+
+    <!-- Tabla de puntos -->
+    <section>
+        <h2>Detalles de la Ruta</h2>
+
+        <table id="tablaPuntos" border="1">
+            <thead>
+                <tr>
+                    <th>Punto</th>
+                    <th>Latitud</th>
+                    <th>Longitud</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTabla"></tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <strong>Distancia total: </strong>
+                        <span id="distanciaTotal">0 km</span>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+
+    <!-- Mapa -->
+    <section>
+        <h2>Mapa</h2>
+        <div id="divmapa"></div>
+    </section>
+
+    <!-- Modal Añadir / Modificar -->
+    <div id="modal" class="modal oculto">
+        <div class="modal-contenido">
+            <h3 id="tituloModal">Nueva Ruta</h3>
+
+            <label>Archivo GPX (solo para añadir): </label>
+            <input type="file" id="rutaArchivo"><br>
+
+            <button id="btnGuardarRuta">Guardar</button>
+            <button id="btnCancelarModal">Cancelar</button>
+        </div>
+    </div>
+</body>
+
+</html>

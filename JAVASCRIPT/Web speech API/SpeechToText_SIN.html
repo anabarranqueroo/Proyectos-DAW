@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Voz a texto</title>
+</head>
+
+<script type="text/javascript">
+
+  window.onload = function () {
+    document.getElementById("inicioBtn").onclick = Escuchar;
+  }
+
+  if (!('webkitSpeechRecognition' in window)) {
+    document.getElementById("sal").innerText = "Tu navegador no soporta SpeechRecognition.";
+  } else {
+    var recognition = new SpeechRecognition();
+    recognition.lang = "es-ES";
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    var boton = document.getElementById("inicioBtn");
+    var texto = document.getElementById("sal");
+
+    var finalTexto = "";
+
+    recognition.onresult = function (event) {
+      var interTexto = "";
+      for (var i = event.resultIndex; i < event.results.length; i++) {
+        var transcripcion = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTexto += transcripcion + "\n";
+        } else {
+          interTexto += transcripcion;
+        }
+      }
+      texto.innerHTML = finalTexto + "<span style='color:gray'>" + interTexto + "</span>";
+    }
+
+    recognition.onerror = function (event) {
+      texto.innerText = "Error: " + event.error;
+    }
+
+    recognition.onend = function () {
+      boton.textContent = "Iniciar grabación";
+    }
+
+    function Escuchar() {
+      finalTexto = "";
+      recognition.start();
+      boton.textContent = "Grabando..";
+    }
+
+  }
+
+</script>
+
+<body>
+  <button id="inicioBtn"> Iniciar grabación </button>
+  <div id="sal"></div>
+</body>
+
+</html>
