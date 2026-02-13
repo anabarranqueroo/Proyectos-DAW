@@ -1,0 +1,34 @@
+<h3>Lista de personajes</h3>
+<div *ngIf="error" style="color:red">{{ error }}</div>
+<table *ngIf="lista.length > 0" border="1" cellpadding="5">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Altura</th>
+      <th>Peso</th>
+      <th>Cumpleaños</th>
+      <th>Género</th>
+      <th>Planeta del personaje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of lista">
+      <td>{{p.nombre}}</td>
+      <td>{{p.altura}}</td>
+      <td>{{p.peso}}</td>
+      <td>{{p.cumpleanos}}</td>
+      <td>{{p.genero}}</td>
+      <td>
+        <button *ngIf="getPlanetaName(p.planetaUrl)"
+          [routerLink]="['/planeta', getPlanetaId(p.planetaUrl)]">
+          {{ getPlanetaName(p.planetaUrl) }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="paginacion">
+  <button (click)="anterior()" [disabled]="!prevUrl">Anterior</button>
+  <button (click)="siguiente()" [disabled]="!nextUrl">Siguiente</button>
+</div>
+<h3>Todos los planetas ➡️ <button routerLink="/planetas">Ver planetas</button></h3>
