@@ -1,0 +1,10 @@
+com\proyectoCochesRest\controller\ApiExceptionHandler.class
+com\proyectoCochesRest\repo\ModeloRepository.class
+com\proyectoCochesRest\config\WebConfig.class
+com\proyectoCochesRest\model\Modelo.class
+com\proyectoCochesRest\service\ModeloService.class
+com\proyectoCochesRest\model\Coche.class
+com\proyectoCochesRest\service\CocheService.class
+com\proyectoCochesRest\ProyectoCochesRestApplication.class
+com\proyectoCochesRest\repo\CocheRepository.class
+com\proyectoCochesRest\controller\CocheController.class
