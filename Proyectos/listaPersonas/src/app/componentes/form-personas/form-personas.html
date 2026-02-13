@@ -1,0 +1,35 @@
+<form #personaForm="ngForm" (ngSubmit)="enviar(personaForm.value)">
+    <!--ngForm permite usar FormsModule y validaciones-->
+    <div>
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" required [(ngModel)]="persona.dni" name="dni" #dni="ngModel">
+        <div [hidden]="dni.valid || dni.pristine" style="color:red">
+            El DNI es obligatorio.
+        </div>
+    </div>
+    <br>
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required [(ngModel)]="persona.nombre" name="nombre" #nombre="ngModel">
+        <div [hidden]="nombre.valid || nombre.pristine" style="color:red">
+            El nombre es obligatorio.
+        </div>
+    </div>
+    <br>
+    <div>
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" required [(ngModel)]="persona.apellidos" name="apellidos" #apellidos="ngModel">
+        <div [hidden]="apellidos.valid || apellidos.pristine" style="color:red">
+            Los apellidos son obligatorios.
+        </div>
+    </div>
+    <br>
+    <div>
+        <button type="submit" [disabled]="!personaForm.valid">
+            Añadir persona
+        </button>
+        <button type="button" routerLink="/">Cancelar</button>
+    </div>
+</form>
+<br>
+<button routerLink="/">Volver al Listado</button>

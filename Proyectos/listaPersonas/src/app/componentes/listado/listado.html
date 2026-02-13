@@ -1,0 +1,35 @@
+<p>
+    <!--Navega vía HTML al form, necesita RouterLink importado-->
+    <button routerLink="/formulario-personas/-1">Añadir Persona</button> 
+    <span> | </span>
+    <!--Llama al método que usa el navigate-->
+    <button type="button" (click)="irNuevaPersona()">Añadir Persona (método)</button>
+</p>
+
+<table id="Personajes" class="estilo_Tabla_1" border="1">
+    <caption>Lista Personas</caption>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>DNI</th>
+            <th>NOMBRE</th>
+            <th>APELLIDOS</th>
+            <th>ACCION</th>         
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngFor="let p of listaPer; let i = index"> -->
+        @for (p of listaPer ; track $index) {
+        <tr>
+            <td>{{p.id}}</td>
+            <td>{{p.dni}}</td>
+            <td>{{p.nombre}}</td>
+            <td>{{p.apellidos}}</td>
+            <td>     
+                <button routerLink="/formulario-personas/{{p.id}}">EDIT</button>
+                <button>DEL</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
