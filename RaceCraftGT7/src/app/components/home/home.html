@@ -1,0 +1,71 @@
+<div class="home-background" [style.backgroundImage]="'url(' + images[numImg] + ')'">
+    <div class="overlay">
+
+        <nav class="navbar navbar-expand-lg p-3 custom-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="color: aqua;">RaceCraft GT7</a>
+            </div>
+        </nav>
+
+        <div class="home-center text-center">
+            <h1>RaceCraft GT7</h1>
+            <p>Explora todos los coches y encuentra tu favorito.</p>
+
+            <form class="search-form" (ngSubmit)="buscar()">
+                <input class="form-control" type="search" placeholder="Buscar coche..." [(ngModel)]="buscador"
+                    name="buscador">
+                <button class="btn btn-search" type="submit">Buscar</button>
+            </form>
+
+            <div class="car-type-cards mt-4">
+                <button class="card-btn" [class.active]="carType==='used'" (click)="carType='used'"
+                    routerLink="/catalog/used">Used Cars</button>
+                <button class="card-btn" [class.active]="carType==='legend'" (click)="carType='legend'"
+                    routerLink="/catalog/legends">Legend Cars</button>
+            </div>
+
+            <div class="stats-container mt-5">
+                <div class="stat-card">
+                    <h2>{{ animatedTotalCars }}</h2>
+                    <p>Total de Coches</p>
+                </div>
+                <div class="stat-card">
+                    <h2>{{ animatedLegendCars }}</h2>
+                    <p>Legendarios</p>
+                </div>
+                <div class="stat-card">
+                    <h2>{{ animatedBrands }}</h2>
+                    <p>Marcas</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-separator"></div>
+
+        <div class="home-video-section">
+            <video autoplay muted loop playsinline controls preload="auto">
+                <source src="assets/video1.mp4" type="video/mp4">
+            </video>
+            <div class="video-text">
+                <p class="video-title">LOS MEJORES MODELOS DE COCHES DE ESTE AÑO NUEVO</p>
+                <p class="video-subtitle">Descubre todos los coches y estadísticas más recientes del GT7</p>
+            </div>
+        </div>
+
+        <div class="section-separator"></div>
+
+        
+
+    </div>
+</div>
+
+<footer class="custom-footer">
+    <div class="container text-center">
+        <h5 class="footer-logo">RaceCraft GT7</h5>
+        <p class="footer-text">
+            Catálogo interactivo inspirado en el videojuego Gran Turismo 7.
+            Explora coches usados y legendarios con sus características y estadísticas.
+        </p>
+        <small class="footer-copy">Proyecto fan, no oficial basado en GT7.</small>
+    </div>
+</footer>
