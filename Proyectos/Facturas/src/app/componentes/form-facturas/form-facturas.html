@@ -1,0 +1,73 @@
+<!-- Formulario básico -->
+ <!-- 
+ <h3>Formulario básico</h3>
+<form #facturaForm="ngForm" (ngSubmit)="envio(facturaForm.value)">
+    <div>
+        <label for="numero">Número de la factura:</label>
+        <input type="text" id="numero" placeholder="FE0001" required [(ngModel)]="factura.numero" name="numero" #numero="ngModel">
+        <div [hidden]="numero.valid || numero.pristine"  style="color: red;">
+            El número de la factura es obligatorio.
+        </div>
+    </div>
+    <br>
+    <div>
+        <label for="id_cliente">Número del cliente:</label>
+        <input type="number" id="id_cliente" required [(ngModel)]="factura.id_cliente" name="id_cliente" #id_cliente="ngModel">
+        <div [hidden]="id_cliente.valid || id_cliente.pristine"  style="color: red;">
+            El número del cliente es obligatorio.
+        </div>
+    </div>
+    <br>
+    <div>
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required [(ngModel)]="factura.fecha" name="fecha" #fecha="ngModel">
+        <div [hidden]="fecha.valid || fecha.pristine"  style="color: red;">
+            La fecha de la factura es obligatoria.
+        </div>
+    </div>
+    <br>
+    <div>
+        <button type="submit" [disabled]="!facturaForm.valid">
+            Añadir factura
+        </button>
+        <button type="button" routerLink="/">
+            Cancelar
+        </button>
+    </div>
+</form>
+-->
+<!-- Formulario reactivo -->
+ <h3>Formulario de facturas</h3>
+ <form [formGroup]="form" (ngSubmit)="envio()">
+    <div>
+        <label>Número de la factura:</label>
+        <input type="text" id="numero" formControlName="numero">
+        @if(form.controls["numero"].invalid &&
+        (form.controls["numero"].touched || form.controls["numero"].dirty)){
+            <div>El número de la factura es obligatorio con 6 caracteres</div>
+        }
+    </div>
+
+    <div>
+        <label>Número del cliente:</label>
+        <input type="number" id="id_cliente" formControlName="id_cliente">
+        @if(form.controls["id_cliente"].invalid &&
+        (form.controls["id_cliente"].touched || form.controls["id_cliente"].dirty)){
+            <div>El número del cliente es obligatorio.</div>
+        }
+    </div>
+
+    <div>
+        <label>Fecha:</label>
+        <input type="date" id="fecha" formControlName="fecha">
+        @if(form.controls["fecha"].invalid &&
+        (form.controls["fecha"].touched || form.controls["fecha"].dirty)){
+            <div>La fecha es obligatoria</div>
+        }
+    </div>
+
+    <div>
+        <button type="submit" [disabled]="!form.valid">Añadir factura</button>
+        <button type="button" (click)="volver()">Volver atrás</button>
+    </div>
+ </form>

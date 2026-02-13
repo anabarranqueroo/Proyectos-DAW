@@ -1,0 +1,85 @@
+/* ================== BOTONES GENERALES (fuera de tabla) ================== */
+
+button:not(.btn-accion) {
+  margin-right: 8px;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+button:not(.btn-accion):hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+button:not(.btn-accion):active {
+  transform: translateY(1px);
+}
+
+/* ================== BOTONES DE ACCIONES EN TABLA ================== */
+
+.btn-accion {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-accion:hover {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+/* Margen entre botones de la misma celda */
+td .btn-accion + .btn-accion {
+  margin-left: 4px;
+}
+
+/* ================== TABLAS ================== */
+
+h3 {
+  color: #333;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f0f0f0;
+}
+
+table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+table tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* ================== SEPARACIÓN ================== */
+
+br {
+  line-height: 1.5em;
+}

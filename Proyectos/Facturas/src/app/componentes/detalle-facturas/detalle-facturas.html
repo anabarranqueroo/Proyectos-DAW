@@ -1,0 +1,48 @@
+<h3>Factura</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <td>{{factura.id}}</td>
+    </tr>
+    <tr>
+        <th>Número de la factura</th>
+        <td>{{factura.numero}}</td>
+    </tr>
+    <tr>
+        <th>NºCliente</th>
+        <td>{{factura.id_cliente}}</td>
+    </tr>
+    <tr>
+        <th>Fecha</th>
+        <td>{{factura.fecha}}</td>
+    </tr>
+</table>
+
+<br>
+
+<button type="button" routerLink="/">Volver</button>
+
+<br><br>
+<h3>Detalle de la factura</h3>
+
+<table>
+    <tr>
+        <th>Cantidad</th>
+        <th>Concepto</th>
+        <th>Precio</th>
+        <th>IVA %</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let d of detalles">
+        <td>{{d.cantidad}}</td>
+        <td>{{d.concepto}}</td>
+        <td>{{d.precio}}</td>
+        <td>{{d.tipo_iva}}</td>
+        <td>
+            <button class="btn-accion" type="button" [routerLink]="['/form-detalle', factura.id, d.id]">Modificar</button>
+            <button class="btn-accion" type="button" (click)="borrarDetalle(d.id)">Eliminar</button>
+        </td>
+    </tr>
+</table>
+
+<button type="button" (click)="anadirDetalle()">Añadir detalle</button>

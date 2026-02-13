@@ -1,0 +1,29 @@
+<p>
+    <button routerLink="/form-facturas/-1">Nueva factura</button>
+</p>
+
+<table id="Facturas">
+    <caption>Lista de facturas</caption>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Numero</th>
+            <th>NºCliente</th>
+            <th>Fecha</th>
+            <th>Detalles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (f of listaFacturas; track $index){
+            <tr>
+                <td>{{f.id}}</td>
+                <td>{{f.numero}}</td>
+                <td>{{f.id_cliente}}</td>
+                <td>{{f.fecha}}</td>
+                <td>
+                    <button routerLink="/factura/{{f.id}}">Más detalles</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
