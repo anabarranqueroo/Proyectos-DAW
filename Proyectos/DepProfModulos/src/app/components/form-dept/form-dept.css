@@ -1,0 +1,83 @@
+/* Título */
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Formulario */
+form {
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+/* Cada bloque */
+form > div {
+  margin-bottom: 15px;
+}
+
+/* Etiquetas */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Inputs */
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Input inválido */
+input.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+}
+
+/* Mensajes de error */
+div > div {
+  margin-top: 5px;
+  color: #e74c3c;
+  font-size: 13px;
+}
+
+/* Botones */
+button {
+  padding: 8px 14px;
+  margin-right: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Botón submit */
+button[type="submit"] {
+  background-color: #2ecc71;
+  color: white;
+}
+
+/* Botón submit deshabilitado */
+button[type="submit"]:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+/* Botón volver */
+button[type="button"] {
+  background-color: #3498db;
+  color: white;
+}
+
+/* Hover */
+button:hover:not(:disabled) {
+  opacity: 0.9;
+}

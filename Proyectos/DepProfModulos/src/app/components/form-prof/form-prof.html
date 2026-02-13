@@ -1,0 +1,28 @@
+<h3>{{titulo}}</h3>
+<form [formGroup]="form" (ngSubmit)="envio()">
+    <div>
+        <label>Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre">
+        @if(form.controls["nombre"].invalid && (form.controls["nombre"].touched || form.controls["nombre"].dirty)){
+            <div>El nombre es obligatorio con al menos dos caracteres.</div>
+        }
+    </div>
+    <div>
+        <label>Apellidos:</label>
+        <input type="text" id="apellidos" formControlName="apellidos">
+        @if(form.controls["apellidos"].invalid && (form.controls["apellidos"].touched || form.controls["apellidos"].dirty)){
+            <div>Los apellidos son obligatorios con al menos dos caracteres.</div>
+        }
+    </div>
+    <div>
+        <label>DNI:</label>
+        <input type="text" id="dni" formControlName="dni">
+        @if(form.controls["dni"].invalid && (form.controls["dni"].touched || form.controls["dni"].dirty)){
+            <div>El DNI es obligatorio con al menos nueve caracteres.</div>
+        }
+    </div>
+    <div>
+        <button type="submit" [disabled]="!form.valid">➕ {{titulo}}</button>
+        <button type="button" (click)="volver()">↩️ Volver</button>
+    </div>
+</form>

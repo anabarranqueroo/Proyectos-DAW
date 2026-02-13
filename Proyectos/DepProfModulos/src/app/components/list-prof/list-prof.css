@@ -1,0 +1,103 @@
+/* Título */
+h3 {
+    font-family: 'Arial', sans-serif;
+    color: #1e3a8a; /* azul oscuro */
+    margin-bottom: 20px;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Encabezado */
+thead tr {
+    background-color: #1e40af; /* azul intenso */
+    color: white;
+}
+
+thead th {
+    padding: 10px;
+    text-align: left;
+}
+
+/* Filas */
+tbody tr {
+    background-color: #f9fafb;
+    transition: background-color 0.2s;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f3f4f6;
+}
+
+tbody tr:hover {
+    background-color: #e0e7ff; /* hover azul claro */
+}
+
+/* Celdas */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Botones generales */
+button {
+    padding: 5px 12px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Botón Editar */
+button[routerLink*="form-prof"]:not([routerLink*="add"]) {
+    background-color: #3b82f6; /* azul */
+    color: white;
+}
+
+button[routerLink*="form-prof"]:not([routerLink*="add"]):hover {
+    background-color: #2563eb; /* azul oscuro */
+}
+
+/* Botón Eliminar */
+button[click] {
+    background-color: #ef4444; /* rojo */
+    color: white;
+}
+
+button[click]:hover {
+    background-color: #b91c1c; /* rojo oscuro */
+}
+
+/* Botón Añadir profesor */
+div button[routerLink*="form-prof-add"] {
+    background-color: #10b981; /* verde */
+    color: white;
+}
+
+div button[routerLink*="form-prof-add"]:hover {
+    background-color: #047857; /* verde oscuro */
+}
+
+/* Botón Volver */
+button[routerLink="/"] {
+    background-color: #fbbf24; /* amarillo */
+    color: white;
+    margin-top: 10px;
+}
+
+button[routerLink="/"]:hover {
+    background-color: #b45309; /* naranja oscuro */
+}

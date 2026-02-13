@@ -1,0 +1,85 @@
+/* Contenedor del formulario */
+h3 {
+    font-family: 'Arial', sans-serif;
+    color: #1e3a8a; /* azul oscuro */
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+form {
+    max-width: 500px;
+    background-color: #f9fafb;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Campos del formulario */
+div {
+    margin-bottom: 15px;
+}
+
+/* Etiquetas */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #1f2937; /* gris oscuro */
+}
+
+/* Inputs */
+input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db; /* gris claro */
+    border-radius: 5px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: #3b82f6; /* azul */
+    outline: none;
+}
+
+/* Mensajes de error */
+div > div {
+    color: #ef4444; /* rojo */
+    font-size: 0.85rem;
+    margin-top: 3px;
+}
+
+/* Botones */
+button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Botón de enviar (añadir o editar) */
+button[type="submit"] {
+    background-color: #3b82f6; /* azul */
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #2563eb; /* azul oscuro */
+    transform: scale(1.05);
+}
+
+/* Botón de volver */
+button[type="button"] {
+    background-color: #fbbf24; /* amarillo */
+    color: white;
+}
+
+button[type="button"]:hover {
+    background-color: #b45309; /* naranja oscuro */
+    transform: scale(1.05);
+}

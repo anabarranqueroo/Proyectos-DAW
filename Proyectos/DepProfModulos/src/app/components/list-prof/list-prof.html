@@ -1,0 +1,37 @@
+<div class="contenedor-profesores" style="margin: 20px 0; padding: 15px; border: 2px solid #eee; background-color: #f9f9f9;">
+  <h4>Profesores del Departamento: {{ nombreDepartamento }}</h4>
+
+  <table *ngIf="listaProf.length > 0; else noProfesores">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>DNI</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of listaProf">
+        <td>{{ p.id }}</td>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.apellidos }}</td>
+        <td>{{ p.dni }}</td>
+        <td>
+          <button [routerLink]="['/form-prof-edit', p.id]">✏️ Editar</button>
+          <button (click)="eliminarProf(p)">❌ Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noProfesores>
+    <p>ℹ️ No hay profesores registrados en este departamento.</p>
+  </ng-template>
+
+  <div style="margin-top: 15px;">
+    <button [routerLink]="['/form-prof', idDepartamento]" style="background-color: #4CAF50; color: white;">
+      ➕ Añadir profesor a este depto
+    </button>
+  </div>
+</div>

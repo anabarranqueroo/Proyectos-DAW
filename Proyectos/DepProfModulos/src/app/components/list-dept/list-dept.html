@@ -1,0 +1,50 @@
+<h3>DEPARTAMENTOS</h3>
+
+<p>
+  <button [routerLink]="['/form-dept', -1]">➕ Nuevo departamento</button>
+</p>
+
+<div>
+  <table id="departamentos">
+    <caption>Lista de departamentos</caption>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Profesores</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of listaDept">
+        <td>{{ d.id }}</td>
+        <td>{{ d.nombre }}</td>
+        <td>{{ d.descripcion }}</td>
+        <td>
+          <button (click)="mostrarProf(d)">
+            {{ idDept === d.id ? 'Cerrar profesores' : 'Ver profesores' }}
+          </button>
+        </td>
+        <td>
+          <button (click)="eliminar(d)">❌ Eliminar</button>
+          <button [routerLink]="['/form-dept-edit', d.id]">✏️ Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr />
+
+<hr />
+
+<div *ngIf="deptSeleccionado">
+  <h3>Profesores del Departamento: {{ deptSeleccionado.nombre }}</h3>
+  
+  <app-list-prof 
+    [idDepartamento]="idDept"
+    [nombreDepartamento]="deptSeleccionado.nombre"
+    (eliminado)="cargarDepartamentos()">
+  </app-list-prof>
+</div>
