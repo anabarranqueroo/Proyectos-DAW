@@ -1,0 +1,33 @@
+<div class="container my-4">
+
+  <h2 class="text-center mb-4">Lista de Coches</h2>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-success" routerLink="/form-coche/-1">
+      <i class="bi bi-plus-lg"></i> Añadir Coche
+    </button>
+  </div>
+
+  <ul class="list-group">
+    <li *ngFor="let coche of coches" class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+
+      <div>
+        <strong>{{ coche.marca }}</strong> - {{ coche.color }} - {{ coche.precio}} €
+      </div>
+
+      <div class="mt-2 mt-md-0">
+        <button class="btn btn-info btn-sm me-2" [routerLink]="'/detalle/' + coche.id">
+          <i class="bi bi-eye"></i> Ver detalle
+        </button>
+        <button class="btn btn-warning btn-sm me-2" routerLink="/form-coche-edit/{{coche.id}}">
+          <i class="bi bi-pencil-square"></i> Editar
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="borrarCoche(coche.id!)">
+          <i class="bi bi-trash"></i> Borrar
+        </button>
+      </div>
+
+    </li>
+  </ul>
+
+</div>

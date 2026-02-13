@@ -1,0 +1,44 @@
+<div class="container my-4 card p-4 shadow-sm bg-light">
+  <h2 class="text-center mb-4">{{ titulo }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="envio()">
+
+    <div class="mb-3">
+      <label class="form-label">Marca</label>
+      <input type="text" class="form-control" formControlName="marca">
+      <div class="text-danger mt-1" *ngIf="form.controls['marca'].invalid && (form.controls['marca'].touched || form.controls['marca'].dirty)">
+        La marca es obligatoria con al menos 2 caracteres.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Año de fabricación</label>
+      <input type="date" class="form-control" formControlName="anoFabricacion">
+      <div class="text-danger mt-1" *ngIf="form.controls['anoFabricacion'].invalid && (form.controls['anoFabricacion'].touched || form.controls['anoFabricacion'].dirty)">
+        El año de fabricación es obligatorio.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Color</label>
+      <input type="text" class="form-control" formControlName="color">
+      <div class="text-danger mt-1" *ngIf="form.controls['color'].invalid && (form.controls['color'].touched || form.controls['color'].dirty)">
+        El color es obligatorio con al menos 2 caracteres.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Precio</label>
+      <input type="number" class="form-control" formControlName="precio">
+      <div class="text-danger mt-1" *ngIf="form.controls['precio'].invalid && (form.controls['precio'].touched || form.controls['precio'].dirty)">
+        El precio es obligatorio y debe ser mayor o igual a 0.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+      {{ titulo }}
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="volver()">Cancelar</button>
+
+  </form>
+</div>

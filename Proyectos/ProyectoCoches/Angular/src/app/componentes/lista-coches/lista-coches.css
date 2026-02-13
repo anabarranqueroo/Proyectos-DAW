@@ -1,0 +1,239 @@
+/* Contenedor principal */
+.container {
+  max-width: 1200px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Título principal */
+h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  color: #1a1a2e;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 30px !important;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b35, #f7931e);
+  border-radius: 2px;
+}
+
+/* Botón añadir coche */
+.btn-success {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  border: none;
+  padding: 12px 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #20c997, #28a745);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.btn-success i {
+  margin-right: 8px;
+}
+
+/* Lista de coches */
+.list-group {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #e9ecef;
+  padding: 20px 25px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.list-group-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background: linear-gradient(180deg, #ff6b35, #f7931e);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.list-group-item:hover {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  transform: translateX(5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item:hover::before {
+  transform: scaleY(1);
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+/* Información del coche */
+.list-group-item > div:first-child {
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.list-group-item strong {
+  font-weight: 700;
+  color: #1a1a2e;
+  font-size: 1.2rem;
+  margin-right: 8px;
+  text-transform: uppercase;
+}
+
+/* Botones de acción */
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Botón Ver detalle */
+.btn-info {
+  background: linear-gradient(135deg, #17a2b8, #138496);
+  color: white;
+  box-shadow: 0 3px 10px rgba(23, 162, 184, 0.3);
+}
+
+.btn-info:hover {
+  background: linear-gradient(135deg, #138496, #117a8b);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(23, 162, 184, 0.4);
+  color: white;
+}
+
+/* Botón Editar */
+.btn-warning {
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  color: #1a1a2e;
+  box-shadow: 0 3px 10px rgba(255, 193, 7, 0.3);
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+  color: #1a1a2e;
+}
+
+/* Botón Borrar */
+.btn-danger {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #c82333, #bd2130);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+  color: white;
+}
+
+/* Iconos de Bootstrap */
+.btn i {
+  margin-right: 5px;
+}
+
+/* Efecto para lista vacía */
+.list-group:empty::after {
+  content: 'No hay coches disponibles';
+  display: block;
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .list-group-item {
+    padding: 15px;
+  }
+
+  .list-group-item > div:first-child {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .list-group-item strong {
+    font-size: 1.1rem;
+  }
+
+  .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    margin: 2px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Animación de entrada para cada elemento */
+.list-group-item {
+  animation: slideIn 0.4s ease-out backwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Añadir delay progresivo a cada elemento */
+.list-group-item:nth-child(1) { animation-delay: 0.1s; }
+.list-group-item:nth-child(2) { animation-delay: 0.2s; }
+.list-group-item:nth-child(3) { animation-delay: 0.3s; }
+.list-group-item:nth-child(4) { animation-delay: 0.4s; }
+.list-group-item:nth-child(5) { animation-delay: 0.5s; }
