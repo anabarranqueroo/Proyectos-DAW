@@ -2,7 +2,7 @@
 
 # EmpreScore
 
-**EmpreScore** es una aplicación web inspirada en Trustpilot que permite a usuarios registrados valorar y reseñar empresas, y a administradores moderar el contenido.
+**EmpreScore** es una aplicación web que permite a usuarios registrados valorar y reseñar empresas, y a administradores moderar el contenido.
 
 ---
 
